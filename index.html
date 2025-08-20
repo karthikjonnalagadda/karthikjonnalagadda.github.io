@@ -207,25 +207,25 @@
           <div>
             <h3 style="margin:0 0 10px; font-size:16px;">Backend & APIs</h3>
             <div class="skills">
-              <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Django</span><span class="chip">REST APIs</span>
+              <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">REST APIs</span>
             </div>
           </div>
           <div>
             <h3 style="margin:0 0 10px; font-size:16px;">Databases</h3>
             <div class="skills">
-              <span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span>
+              <span class="chip">MySQL</span><span class="chip">MongoDB</span>
             </div>
           </div>
           <div>
             <h3 style="margin:0 0 10px; font-size:16px;">Machine Learning</h3>
             <div class="skills">
-              <span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span><span class="chip">Scikit‑learn</span><span class="chip">TensorFlow</span>
+              <span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Scikit‑learn</span><span class="chip">TensorFlow</span>
             </div>
           </div>
           <div>
             <h3 style="margin:0 0 10px; font-size:16px;">Cloud & DevTools</h3>
             <div class="skills">
-              <span class="chip">AWS (EC2)</span><span class="chip">Azure</span><span class="chip">Google Cloud</span><span class="chip">Git</span><span class="chip">GitHub</span>
+              <span class="chip">AWS (EC2)</span><span class="chip">Google Cloud</span><span class="chip">Git</span><span class="chip">GitHub</span>
             </div>
           </div>
         </div>
@@ -242,7 +242,6 @@
             <div class="edu-body">
               <strong>NIIT University, Neemrana</strong>
               <div class="edu-meta">B.Tech (Data Science) • 2022 – 2026</div>
-              <div class="edu-meta">CGPA: 5.43</div>
             </div>
           </div>
           <div class="edu-item">
@@ -271,6 +270,7 @@
           <div>
             <p>Email: <a href="mailto:jonnalagadda.karthik22@st.niituniversity.in">jonnalagadda.karthik22@st.niituniversity.in</a></p>
             <p>LinkedIn: <a target="_blank" rel="noreferrer noopener" href="https://www.linkedin.com/in/jonnalagadda-karthik01/">/in/jonnalagadda-karthik01</a></p>
+            <p>Phone: <a href="tel:+919392991430">+91 93929 91430</a></p>
           </div>
           <form id="contact-form" onsubmit="sendMessage(event)" aria-label="Quick message">
             <label for="msg" style="display:block; margin-bottom:8px; color: var(--muted);">Quick message</label>
@@ -287,7 +287,7 @@
 
   <footer>
     <div class="container">
-      © <span id="year"></span> Karthik Jonnalagadda • Built with HTML & CSS
+      © <span id="year"></span> Karthik Jonnalagadda •
     </div>
   </footer>
 
@@ -302,11 +302,6 @@
       btn.disabled = true; btn.textContent = 'Sending…';
       setTimeout(()=>{ btn.textContent = 'Send'; btn.disabled = false; sent.style.display = 'inline-flex'; setTimeout(()=>sent.style.display='none', 2500); }, 800);
     }
-    // Replace with your uploaded PDF URL or file path once hosted
-    document.getElementById('download-resume').addEventListener('click', function(ev){
-      ev.preventDefault();
-      alert('Add your resume PDF link after hosting (e.g., /assets/Karthik_Jonnalagadda_CV.pdf).');
-    });
   </script>
 </body>
 </html>
