@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Karthik Jonnalagadda · Digital Portfolio</title>
-  <meta name="description" content="Portfolio of Karthik Jonnalagadda – Data Science & Software Projects, Skills, and Education" />
+  <meta name="description" content="Portfolio of Karthik Jonnalagadda – Data Science & Software Projects, Skills, Education, and Certifications" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -119,11 +119,6 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     }
 
-    .stat { display:flex; flex-direction:column; align-items:center; gap:4px; }
-    .stat .num { font-weight: 700; font-size: 22px; color: var(--brand); }
-    .kpi { font-size: 13px; color: var(--muted); }
-
-    /* Sections */
     section { padding: 50px 0; }
     section h2 { font-size: 28px; margin: 0 0 18px; color:#222; }
 
@@ -131,11 +126,6 @@
     .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
 
-    /* Projects */
-    .project h3 { margin:0; font-size:18px; color:#111; }
-    .meta { font-size: 13px; color: var(--muted); margin-bottom:4px; }
-
-    .chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
     .chip {
       background: var(--chip);
       border: 1px solid #e6e9ef;
@@ -145,20 +135,6 @@
       font-size: 12px;
     }
 
-    /* Education */
-    .edu-item { display:flex; gap:14px; align-items:flex-start; }
-    .edu-dot {
-      width:10px; height:10px;
-      border-radius:50%;
-      background: var(--brand);
-      margin-top:8px;
-    }
-    .edu-meta { color: var(--muted); font-size: 14px; }
-
-    /* Skills */
-    .skills { display:flex; flex-wrap:wrap; gap:10px; }
-
-    /* Footer */
     footer {
       padding: 32px 0 64px;
       color: var(--muted);
@@ -168,7 +144,6 @@
       background:#fafbfc;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; }
       .grid-3, .grid-2 { grid-template-columns: 1fr; }
@@ -187,8 +162,9 @@
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#education">Education</a></li>
+          <li><a href="#certifications">Certifications</a></li>
           <li><a href="#contact">Contact</a></li>
-          <a class="btn primary" href="assets/Karthik_Jonnalagadda_CV .pdf" target="_blank">Download CV</a>
+          <a class="btn primary" href="assets/Karthik_Jonnalagadda_CV.pdf" target="_blank">Download CV</a>
         </ul>
       </nav>
     </div>
@@ -212,9 +188,9 @@
         </div>
         <div class="card">
           <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:12px; text-align:center;">
-            <div class="stat"><span class="num">4+</span><span class="kpi">Major Projects</span></div>
-            <div class="stat"><span class="num">MERN</span><span class="kpi">Full-stack</span></div>
-            <div class="stat"><span class="num">ML</span><span class="kpi">SVD · NMF · RF</span></div>
+            <div><span class="num">4+</span><div class="kpi">Major Projects</div></div>
+            <div><span class="num">MERN</span><div class="kpi">Full-stack</div></div>
+            <div><span class="num">ML</span><div class="kpi">SVD · NMF · RF</div></div>
           </div>
           <hr style="border:none; border-top:1px solid #e6e9ef; margin:16px 0;" />
           <p class="kpi">Open to internships & full-time roles in Data Science, ML Engineering, and Full-stack development.</p>
@@ -228,42 +204,22 @@
       <div class="grid grid-2">
         <article class="card project">
           <h3>SafeInbox: Real-Time Email Spam Detection</h3>
-          <div class="meta">Feb 2025 – May 2025 • Team of 4</div>
-          <p>Developed a full ML pipeline (Naïve Bayes, Logistic Regression, SVM) for real-time spam detection. Integrated IMAP for Gmail and built a MERN dashboard with filters. Deployed via Docker.</p>
-          <div class="chips">
-            <span class="chip">Python</span><span class="chip">Scikit-learn</span><span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">MongoDB</span><span class="chip">Docker</span>
-          </div>
-          <p class="kpi">~94% detection accuracy with reduced false positives.</p>
+          <p>Developed ML pipeline (Naïve Bayes, Logistic Regression, SVM) for real-time spam detection. Integrated IMAP with MERN dashboard, Dockerized for deployment.</p>
         </article>
 
         <article class="card project">
           <h3>Empowering Rural Healthcare Through AI</h3>
-          <div class="meta">Jan 2025 – Apr 2025 • Team of 4</div>
-          <p>Proposed AI framework for rural diagnostics and triaging. Integrated telemedicine and AI-driven data analysis for better accessibility.</p>
-          <div class="chips">
-            <span class="chip">AI/ML</span><span class="chip">Telemedicine</span><span class="chip">Research</span>
-          </div>
-          <p class="kpi">25% improvement in early detection; 50% fewer unnecessary hospital visits.</p>
+          <p>Proposed AI-driven diagnostic framework improving accessibility and reducing delays. Integrated telemedicine and ML for patient triaging.</p>
         </article>
 
         <article class="card project">
-          <h3>Genomic Data: Dimensionality Reduction & Clustering</h3>
-          <div class="meta">Feb 2025 – Apr 2025 • Team of 2</div>
-          <p>Applied SVD & NMF on high-dimensional genomic datasets; performed clustering and validated results using Random Forest.</p>
-          <div class="chips">
-            <span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span>
-          </div>
-          <p class="kpi">Adjusted Rand Index: 0.6592 (SVD) · 0.5611 (NMF).</p>
+          <h3>Genomic Data Analysis with Dimensionality Reduction</h3>
+          <p>Applied SVD & NMF on genomic datasets and validated clusters using Random Forest classifier.</p>
         </article>
 
         <article class="card project">
-          <h3>Lost & Found – Cross-platform Mobile App</h3>
-          <div class="meta">Feb 2025 – Apr 2025 • Team of 4</div>
-          <p>React Native app for lost/found item reporting with JWT authentication and AES-256 secure storage. REST API with SQL backend.</p>
-          <div class="chips">
-            <span class="chip">React Native</span><span class="chip">SQL</span><span class="chip">JWT</span><span class="chip">REST APIs</span>
-          </div>
-          <p class="kpi">Backend latency &lt; 100 ms, uptime 99.9%.</p>
+          <h3>Lost & Found – Mobile App</h3>
+          <p>React Native app with JWT authentication and AES-256 secure storage. SQL backend APIs with 99.9% uptime.</p>
         </article>
       </div>
     </section>
@@ -279,11 +235,11 @@
           </div>
           <div>
             <h3>Frontend</h3>
-            <div class="skills"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Android Studio</span></div>
+            <div class="skills"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">React</span><span class="chip">Next.js</span></div>
           </div>
           <div>
-            <h3>Backend & APIs</h3>
-            <div class="skills"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">REST APIs</span></div>
+            <h3>Backend</h3>
+            <div class="skills"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Django</span><span class="chip">REST APIs</span></div>
           </div>
           <div>
             <h3>Databases</h3>
@@ -291,11 +247,11 @@
           </div>
           <div>
             <h3>Machine Learning</h3>
-            <div class="skills"><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">Scikit-learn</span><span class="chip">TensorFlow</span></div>
+            <div class="skills"><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span><span class="chip">TensorFlow</span></div>
           </div>
           <div>
-            <h3>Cloud & DevTools</h3>
-            <div class="skills"><span class="chip">AWS (EC2)</span><span class="chip">Google Cloud</span><span class="chip">Git</span><span class="chip">GitHub</span></div>
+            <h3>Cloud & Tools</h3>
+            <div class="skills"><span class="chip">Google Cloud</span><span class="chip">Git</span><span class="chip">GitHub</span></div>
           </div>
         </div>
       </div>
@@ -305,29 +261,28 @@
     <section id="education">
       <h2>Education</h2>
       <div class="card">
-        <div class="grid">
-          <div class="edu-item">
-            <div class="edu-dot"></div>
-            <div>
-              <strong>NIIT University, Neemrana</strong>
-              <div class="edu-meta">B.Tech (Data Science) • 2022 – 2026</div>
-            </div>
-          </div>
-          <div class="edu-item">
-            <div class="edu-dot"></div>
-            <div>
-              <strong>Sri Gayatri Junior College, Hyderabad</strong>
-              <div class="edu-meta">Class XII • 2022 (State Board)</div>
-            </div>
-          </div>
-          <div class="edu-item">
-            <div class="edu-dot"></div>
-            <div>
-              <strong>New Era School, Khammam</strong>
-              <div class="edu-meta">Class X • 2020 (State Board)</div>
-            </div>
-          </div>
-        </div>
+        <ul style="list-style:none; padding-left:0;">
+          <li><strong>NIIT University, Neemrana</strong> – B.Tech (CSE - Data Science) • 2022–2026</li>
+          <li><strong>Sri Gayatri Junior College, Hyderabad</strong> – Class XII • 2022</li>
+          <li><strong>New Era School, Khammam</strong> – Class X • 2020</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <div class="card">
+        <ul style="list-style:none; padding-left:0; margin:0;">
+          <li style="margin-bottom:12px;">
+            <strong>Oracle Cloud Infrastructure 2025 Certified Data Science Professional</strong> – Oracle<br>
+            <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=B1686B635BBC472A5AD973577A6909721C61AC111F1E25AEDE54E854793CBF64" target="_blank">View Certification ↗</a>
+          </li>
+          <li style="margin-bottom:12px;">
+            <strong>Introduction to Career Skills in Data Analytics</strong> – LinkedIn Learning<br>
+            <a href="https://lnkd.in/eBxSXHN7" target="_blank">View Certification ↗</a>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -335,12 +290,15 @@
     <section id="contact">
       <h2>Contact</h2>
       <div class="card">
-        <div class="grid grid-2">
-          <div>
-            <p>Email: <a href="mailto:jonnalagadda.karthik22@st.niituniversity.in">jonnalagadda.karthik22@st.niituniversity.in</a></p>
-            <p>LinkedIn: <a target="_blank" href="https://www.linkedin.com/in/jonnalagadda-karthik01/">/in/jonnalagadda-karthik01</a></p>
-            <p>Phone: <a href="tel:+919392991430">+91 93929 91430</a></p>
-          </div>
-          <form id="contact-form" onsubmit="sendMessage(event)">
-            <label for="msg" style="display:block; margin-bottom:8px; color: var(--muted);">Quick message</label>
-            <textarea id="msg" required rows="3" placeholder="Write a short message…" style="width:100%; padding:12px; border-radius:12px; border:1px
+        <p>Email: <a href="mailto:jonnalagadda.karthik22@st.niituniversity.in">jonnalagadda.karthik22@st.niituniversity.in</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/jonnalagadda-karthik01/" target="_blank">/in/jonnalagadda-karthik01</a></p>
+        <p>Phone: <a href="tel:+919392991430">+91 93929 91430</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Karthik Jonnalagadda · Designed with 💙 using HTML & CSS
+  </footer>
+</body>
+</html>
