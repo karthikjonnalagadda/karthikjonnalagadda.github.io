@@ -263,7 +263,11 @@
     }));
   }
 
-  /* ───────────────────────────────── GitHub (public REST) ── */
+  /* ═══════════════════════════ SHOWCASE (public GitHub REST only) ═══════════
+     Metadata is live. Summaries and engineering highlights are curated from
+     each project's README — never generated from the repo name, and never
+     invented. Repos without a verified summary fall back to a neutral line. */
+
   const LANG = {
     Python: '#3572A5', JavaScript: '#f1e05a', TypeScript: '#3178c6', HTML: '#e34c26',
     CSS: '#563d7c', 'Jupyter Notebook': '#DA5B0B', Java: '#b07219', R: '#198CE7',
@@ -272,69 +276,239 @@
   const esc = s => String(s).replace(/[&<>"']/g, m =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
 
-  const repoBox = $('#repos');
+  /* name → verified profile, sourced from that repository's README */
+  const PROFILE = {
+    'medical_multimodal_rag_ai': {
+      title: 'Medical Multimodal AI Assistant', badge: 'Flagship', tone: 'flag', feat: 1,
+      value: 'Reads lab reports with OCR, analyses chest X-rays with a CNN, and answers clinical questions through retrieval-augmented generation — grounded in retrieved evidence rather than model memory.',
+      hl: [['10', 'REST APIs'], ['50', 'tests'], ['60%', 'coverage'], ['14', 'classes'], ['384', 'dim embeddings']],
+      tech: ['Python', 'FastAPI', 'PyTorch', 'ChromaDB', 'FAISS', 'LangChain', 'EasyOCR', 'MongoDB', 'React']
+    },
+    'SAFEINBOX': {
+      title: 'SafeInbox', badge: 'Production Ready', tone: 'prod', feat: 2,
+      value: 'Real-time email spam detection over live Gmail and IMAP inboxes, serving a scikit-learn classifier from inside a Node runtime with no separate model service to operate.',
+      hl: [['26,972', 'emails'], ['1.03M', 'features'], ['JWT', 'auth'], ['Docker', ''], ['Jenkins', 'CI']],
+      tech: ['Python', 'Scikit-learn', 'Node.js', 'Express', 'React', 'MongoDB', 'Docker', 'Jenkins']
+    },
+    'Job-moniter': {
+      title: 'AI Job Intelligence Agent', badge: 'Production Ready', tone: 'prod', feat: 3,
+      value: 'Autonomous job discovery: collects postings from official career pages and ATS platforms, deduplicates them, filters by profile before ranking, scores survivors against a resume with semantic embeddings, and emails a daily report.',
+      hl: [['MIT', 'licensed'], ['CI', 'on push'], ['mypy', 'typed'], ['ruff', 'linted']],
+      tech: ['Python 3.12', 'Embeddings', 'GitHub Actions', 'mypy', 'ruff']
+    },
+    'mini-erp': {
+      title: 'Mini ERP + CRM Portal', badge: 'Production Ready', tone: 'prod',
+      value: 'ERP and CRM for a wholesale distribution business — product catalogue, real-time inventory on an append-only stock ledger, and sales challans with transactional stock deduction.',
+      hl: [['RBAC', ''], ['Audit', 'trail'], ['Monorepo', '']],
+      tech: ['TypeScript', 'Express', 'Prisma', 'PostgreSQL', 'React', 'Vite', 'Tailwind']
+    },
+    'Containerized-CLI-Login-System': {
+      title: 'Containerized CLI Login System', badge: 'Production Ready', tone: 'prod',
+      value: 'A command-line authentication service in Go: registration, password login with account lockout, TOTP two-factor, and server-side sessions. No web UI by design — a thin CLI over a testable service core.',
+      hl: [['TOTP', '2FA'], ['Lockout', ''], ['Sessions', '']],
+      tech: ['Go', 'Docker', 'TOTP']
+    },
+    'AI-Powered-Customer-Complaint-Management-System': {
+      title: 'Customer Complaint AI', badge: 'Featured', tone: 'flag',
+      value: 'Pharmaceutical complaint intake: upload a PDF, image or DOCX and a LangGraph workflow extracts the details, auto-fills the form, then classifies risk, checks completeness and detects duplicates.',
+      hl: [['LangGraph', ''], ['Risk', 'scoring'], ['Dedupe', '']],
+      tech: ['TypeScript', 'LangGraph', 'AI Workflow']
+    },
+    'SecondBrain-A-Local-Multi-Modal-Knowledge-Engine-MongoDB-FAISS-Local-LLM-': {
+      title: 'SecondBrain Knowledge Engine', badge: 'Research', tone: '',
+      value: 'A fully local multimodal knowledge engine that ingests PDFs, audio, images, URLs and text, stores structured chunks in MongoDB, and retrieves them through FAISS with a local LLM.',
+      hl: [['Local', 'LLM'], ['FAISS', ''], ['Multimodal', '']],
+      tech: ['Python', 'MongoDB', 'FAISS', 'Local LLM']
+    },
+    'credit-risk-scoring': {
+      title: 'Credit Risk Scoring', badge: 'Experimental', tone: '',
+      value: 'An end-to-end credit scoring scaffold: React front end, Django REST with JWT, a LightGBM scoring service with SHAP explanations, and PostgreSQL — orchestrated with Docker Compose.',
+      hl: [['LightGBM', ''], ['SHAP', ''], ['JWT', '']],
+      tech: ['Python', 'Django REST', 'LightGBM', 'SHAP', 'PostgreSQL', 'Docker']
+    },
+    'BatchMonitoring': {
+      title: 'Batch Monitoring System', badge: 'Open Source', tone: '',
+      value: 'Automated Python service that pulls batch data from the NIIT API, validates it, generates a CSV report and sends daily email alerts.',
+      hl: [['Scheduled', ''], ['CSV', 'reports']],
+      tech: ['Python', 'Email', 'CSV']
+    },
+    'ai-resume-analyzer': {
+      title: 'AI Resume Analyzer', badge: 'Featured', tone: 'flag',
+      value: 'A full-stack application that simulates an Applicant Tracking System, scoring resumes against a job description.',
+      hl: [['ATS', 'scoring']], tech: ['TypeScript', 'Full-stack']
+    },
+    'multimodal-code-debug': {
+      title: 'Multimodal Code Debug Assistant', badge: 'Research', tone: '',
+      value: 'Analyses source code alongside error screenshots to detect bugs and explain root causes.',
+      hl: [['Multimodal', '']], tech: ['TypeScript', 'Vision', 'LLM']
+    }
+  };
+  const FALLBACK = 'Project details are available in the repository.';
+  const SKIP = new Set(['karthikjonnalagadda.github.io', 'CV', 'Karthik', 'lost-and-found']);
+
+  /* Deterministic cover art derived from the repo name, so a project always
+     renders identical artwork. No external images, no extra network cost. */
+  function cover(name, lang) {
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+    const hue = h % 360, c = LANG[lang] || '#8b949e';
+    const initials = name.replace(/[^a-zA-Z]/g, ' ').trim().split(/\s+/)
+      .slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'KJ';
+    const id = 'g' + h.toString(36);
+    return '<svg viewBox="0 0 400 200" aria-hidden="true" preserveAspectRatio="xMidYMid slice">'
+      + '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">'
+      + '<stop offset="0" stop-color="hsl(' + hue + ' 62% 58%)" stop-opacity=".26"/>'
+      + '<stop offset="1" stop-color="hsl(' + ((hue + 58) % 360) + ' 62% 52%)" stop-opacity=".10"/>'
+      + '</linearGradient><pattern id="p' + id + '" width="22" height="22" patternUnits="userSpaceOnUse">'
+      + '<circle cx="1.2" cy="1.2" r="1.2" fill="currentColor" opacity=".16"/></pattern></defs>'
+      + '<rect width="400" height="200" fill="url(#' + id + ')"/>'
+      + '<rect width="400" height="200" fill="url(#p' + id + ')" style="color:' + c + '"/>'
+      + '<text x="28" y="118" font-size="54" font-weight="700" letter-spacing="-2" '
+      + 'font-family="ui-sans-serif,system-ui,sans-serif" fill="' + c + '" opacity=".92">' + esc(initials) + '</text>'
+      + '<rect x="28" y="136" width="52" height="3" rx="1.5" fill="' + c + '" opacity=".55"/></svg>';
+  }
+
+  const kb = n => n > 1024 ? (n / 1024).toFixed(1) + ' MB' : n + ' KB';
+  const when = d => new Date(d).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+
+  function card(r, featured) {
+    const p = PROFILE[r.name] || {};
+    const title = p.title || r.name.replace(/[-_]/g, ' ');
+    const value = p.value || r.description || FALLBACK;
+    const hl = p.hl || [];
+    const tech = p.tech || (r.language ? [r.language] : []);
+    const lic = (r.license || {}).spdx_id;
+    const arrow = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    return '<article class="pc" role="listitem" data-reveal>'
+      + '<div class="pc__cover">'
+      + (p.badge ? '<span class="pc__badge"' + (p.tone ? ' data-tone="' + p.tone + '"' : '') + '>' + esc(p.badge) + '</span>' : '')
+      + cover(r.name, r.language) + '</div>'
+      + '<div class="pc__body">'
+      + '<h4 class="pc__title">' + esc(title) + '</h4>'
+      + '<p class="pc__value">' + esc(value) + '</p>'
+      + (hl.length ? '<div class="pc__hl">' + hl.map(function (x) {
+          return '<span class="hl"><b>' + esc(x[0]) + '</b>' + (x[1] ? esc(x[1]) : '') + '</span>';
+        }).join('') + '</div>' : '')
+      + (tech.length ? '<ul class="pc__tech">' + tech.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '')
+      + '<dl class="pc__facts">'
+      + (r.language ? '<div class="fact"><dt>Language</dt><dd>' + esc(r.language) + '</dd></div>' : '')
+      + '<div class="fact"><dt>Size</dt><dd>' + kb(r.size) + '</dd></div>'
+      + '<div class="fact"><dt>Updated</dt><dd>' + when(r.updated_at) + '</dd></div>'
+      + (lic && lic !== 'NOASSERTION' ? '<div class="fact"><dt>License</dt><dd>' + esc(lic) + '</dd></div>' : '')
+      + '</dl>'
+      + '<div class="pc__actions">'
+      + '<a class="btn btn--sm ' + (featured ? 'btn--primary' : '') + '" href="' + esc(r.html_url) + '" target="_blank" rel="noopener noreferrer">Source code' + arrow + '</a>'
+      + '<a class="btn btn--sm" href="' + esc(r.html_url) + '#readme" target="_blank" rel="noopener noreferrer">Documentation</a>'
+      + (r.homepage ? '<a class="btn btn--sm" href="' + esc(r.homepage) + '" target="_blank" rel="noopener noreferrer">Live demo</a>' : '')
+      + '</div></div></article>';
+  }
+
+  const skeleton = n => Array.from({ length: n }, function () {
+    return '<div class="sk" role="listitem"><div class="sk__c shimmer"></div><div class="sk__b">'
+      + '<div class="sk__l shimmer"></div><div class="sk__l shimmer"></div><div class="sk__l shimmer"></div>'
+      + '</div></div>';
+  }).join('');
+
+  const featBox = $('#featured'), moreBox = $('#more');
 
   async function loadRepos() {
+    if (!featBox || !moreBox) return;
+    featBox.innerHTML = skeleton(3);
+    moreBox.innerHTML = skeleton(6);
     const ctrl = new AbortController();
-    const bail = setTimeout(() => ctrl.abort(), 6000);
+    const bail = setTimeout(() => ctrl.abort(), 7000);
     try {
       const res = await fetch(
-        'https://api.github.com/users/karthikjonnalagadda/repos?sort=updated&per_page=8',
+        'https://api.github.com/users/karthikjonnalagadda/repos?sort=updated&per_page=100',
         { headers: { Accept: 'application/vnd.github+json' }, signal: ctrl.signal });
-      if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
-      const repos = (await res.json()).filter(r => !r.fork).slice(0, 6);
-      if (!repos.length) throw new Error('no public repositories');
+      if (!res.ok) throw new Error('GitHub API returned ' + res.status);
+      const all = (await res.json()).filter(r => !r.fork && !SKIP.has(r.name));
+      if (!all.length) throw new Error('no public repositories');
 
-      repoBox.innerHTML = repos.map(r => `
-        <a class="repo" href="${esc(r.html_url)}" target="_blank" rel="noopener noreferrer">
-          <p class="repo__name">${esc(r.name)}</p>
-          <p class="repo__desc">${esc(r.description || 'No description provided.')}</p>
-          <div class="repo__meta">
-            ${r.language ? `<span><i class="dot" style="background:${LANG[r.language] || '#8b949e'}"></i>${esc(r.language)}</span>` : ''}
-            <span>★ ${r.stargazers_count}</span>
-            <span>⑂ ${r.forks_count}</span>
-            <span>${new Date(r.updated_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>
-          </div>
-        </a>`).join('');
-      renderLangMix(repos);
+      const feat = all.filter(r => PROFILE[r.name] && PROFILE[r.name].feat)
+                      .sort((a, b) => PROFILE[a.name].feat - PROFILE[b.name].feat);
+      const rest = all.filter(r => !(PROFILE[r.name] && PROFILE[r.name].feat)).slice(0, 6);
+
+      featBox.innerHTML = feat.map(r => card(r, true)).join('');
+      moreBox.innerHTML = rest.map(r => card(r, false)).join('');
+      showAll(featBox); showAll(moreBox);
+      renderLangs(all);
     } catch (err) {
       const why = err.name === 'AbortError' ? 'the request timed out' : err.message;
-      repoBox.innerHTML = `<p class="small">Repositories couldn't be loaded (${esc(why)}).
-        <a href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer"
-           style="color:var(--accent)">Browse them on GitHub →</a></p>`;
+      featBox.innerHTML = '<p class="small">Live repository data is unavailable right now ('
+        + esc(why) + '). <a href="https://github.com/karthikjonnalagadda" target="_blank" '
+        + 'rel="noopener noreferrer" style="color:var(--accent)">Browse the repositories on GitHub →</a></p>';
+      moreBox.innerHTML = '';
     } finally {
       clearTimeout(bail);
-      repoBox.setAttribute('aria-busy', 'false');
+      featBox.setAttribute('aria-busy', 'false');
+      moreBox.setAttribute('aria-busy', 'false');
     }
   }
 
-  /* Language mix from the repo payload already in hand. A contribution graph
-     would need authenticated GraphQL, which cannot ship safely on Pages. */
-  function renderLangMix(repos) {
+  /* Donut. A contribution graph would need authenticated GraphQL, which cannot
+     ship safely on Pages; this uses the payload already in hand. */
+  function renderLangs(repos) {
     const host = $('#langmix');
     if (!host) return;
     const tally = {};
     repos.forEach(r => { if (r.language) tally[r.language] = (tally[r.language] || 0) + 1; });
     const rows = Object.entries(tally).sort((a, b) => b[1] - a[1]);
     if (!rows.length) return;
-    const total = rows.reduce((s, [, n]) => s + n, 0);
-    host.innerHTML = `
-      <p class="eyebrow">Language mix across public repositories</p>
-      <div class="langbar" role="img" aria-label="${rows.map(([l, n]) =>
-        `${l} ${Math.round(n / total * 100)} percent`).join(', ')}">
-        ${rows.map(([l, n]) => `<span style="width:${(n / total * 100).toFixed(1)}%;background:${LANG[l] || '#8b949e'}"></span>`).join('')}
-      </div>
-      <ul class="langlegend">${rows.map(([l, n]) =>
-        `<li><i class="dot" style="background:${LANG[l] || '#8b949e'}"></i>${esc(l)} <b>${Math.round(n / total * 100)}%</b></li>`).join('')}</ul>`;
+    const total = rows.reduce((s, x) => s + x[1], 0);
+    const R = 68, C = 2 * Math.PI * R;
+    let off = 0;
+
+    const arcs = rows.map(function (row, i) {
+      const frac = row[1] / total;
+      const seg = '<circle r="' + R + '" cx="88" cy="88" stroke="' + (LANG[row[0]] || '#8b949e') + '" '
+        + 'stroke-dasharray="' + (frac * C).toFixed(2) + ' ' + (C - frac * C).toFixed(2) + '" '
+        + 'stroke-dashoffset="' + (-off).toFixed(2) + '" data-i="' + i + '" tabindex="0" role="img" '
+        + 'aria-label="' + esc(row[0]) + ', ' + Math.round(frac * 100) + ' percent, ' + row[1]
+        + (row[1] === 1 ? ' repository' : ' repositories') + '"></circle>';
+      off += frac * C;
+      return seg;
+    }).join('');
+
+    host.innerHTML = '<div class="donut" id="donut">'
+      + '<svg viewBox="0 0 176 176" role="group" aria-label="Language distribution across '
+      + total + ' repositories">' + arcs + '</svg>'
+      + '<div class="donut__mid"><span class="donut__n" id="dn">' + total + '</span>'
+      + '<span class="donut__k" id="dk">repositories</span></div></div>'
+      + '<div><p class="eyebrow" style="margin-bottom:var(--s3)">Language distribution</p>'
+      + '<ul class="langlist" id="langlist">' + rows.map(function (row, i) {
+          return '<li data-i="' + i + '" tabindex="0">'
+            + '<span class="sw" style="background:' + (LANG[row[0]] || '#8b949e') + '"></span>'
+            + '<span class="nm">' + esc(row[0]) + '</span>'
+            + '<span class="ct">' + row[1] + (row[1] === 1 ? ' repo' : ' repos') + '</span>'
+            + '<span class="pc-v">' + Math.round(row[1] / total * 100) + '%</span></li>';
+        }).join('') + '</ul></div>';
     host.hidden = false;
+
+    const donut = $('#donut'), dn = $('#dn'), dk = $('#dk');
+    const segs = $$('circle', donut), items = $$('#langlist li');
+    function focus(i) {
+      donut.dataset.hover = i === null ? 'false' : 'true';
+      segs.forEach(s => { s.dataset.on = String(Number(s.dataset.i) === i); });
+      items.forEach(li => { li.dataset.on = String(Number(li.dataset.i) === i); });
+      if (i === null) { dn.textContent = total; dk.textContent = 'repositories'; }
+      else { dn.textContent = Math.round(rows[i][1] / total * 100) + '%'; dk.textContent = rows[i][0]; }
+    }
+    [...segs, ...items].forEach(function (el) {
+      const i = Number(el.dataset.i);
+      el.addEventListener('mouseenter', () => focus(i));
+      el.addEventListener('focus', () => focus(i));
+      el.addEventListener('mouseleave', () => focus(null));
+      el.addEventListener('blur', () => focus(null));
+    });
   }
 
-  if (repoBox) {
+  if (featBox) {
     if (HAS_IO) {
-      const gio = new IntersectionObserver((es) => {
+      const gio = new IntersectionObserver(function (es) {
         if (es.some(e => e.isIntersecting)) { gio.disconnect(); loadRepos(); }
-      }, { rootMargin: '300px' });
-      gio.observe(repoBox);
+      }, { rootMargin: '320px' });
+      gio.observe(featBox);
     } else { loadRepos(); }
   }
 

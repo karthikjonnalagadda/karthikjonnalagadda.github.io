@@ -120,16 +120,16 @@
 <section class="section section--sunken" aria-labelledby="ev-h">
   <div class="wrap">
     <div class="section__head">
-      <h2 class="h2" id="ev-h">Evidence, not adjectives</h2>
-      <p class="lead">Every number below is reproducible from source — test counts from <code>pytest --cov</code>, dataset size read directly from the trained model artifact.</p>
+      <h2 class="h2" id="ev-h">Engineering evidence</h2>
+      <p class="lead">Every metric below is verifiable from source code, datasets, test reports or project artifacts.</p>
     </div>
     <div class="evidence">
-      <div class="ev" data-reveal><span class="ev__n" data-count="50">0</span><span class="ev__k">Automated tests</span><span class="ev__s">100% passing</span></div>
-      <div class="ev" data-reveal><span class="ev__n" data-count="60" data-suffix="%">0</span><span class="ev__k">Statement coverage</span><span class="ev__s">3,477 statements</span></div>
-      <div class="ev" data-reveal><span class="ev__n" data-count="10">0</span><span class="ev__k">REST endpoints</span><span class="ev__s">FastAPI service</span></div>
-      <div class="ev" data-reveal><span class="ev__n" data-count="26972">0</span><span class="ev__k">Training emails</span><span class="ev__s">Enron corpus</span></div>
-      <div class="ev" data-reveal><span class="ev__n" data-count="384">0</span><span class="ev__k">Embedding dims</span><span class="ev__s">MiniLM · PubMedBERT</span></div>
-      <div class="ev" data-reveal><span class="ev__n" data-count="14">0</span><span class="ev__k">Model classes</span><span class="ev__s">NIH chest X-ray</span></div>
+      <div class="ev" data-reveal><p class="ev__cat"><span aria-hidden="true">🧪</span> Automated Quality</p><span class="ev__n" data-count="50">0</span><span class="ev__k">Passing Tests</span><span class="ev__s">Regression + Integration</span></div>
+      <div class="ev" data-reveal><p class="ev__cat"><span aria-hidden="true">🛡</span> Code Health</p><span class="ev__n" data-count="60" data-suffix="%">0</span><span class="ev__k">Coverage</span><span class="ev__s">3,477 Statements</span></div>
+      <div class="ev" data-reveal><p class="ev__cat"><span aria-hidden="true">⚡</span> Backend</p><span class="ev__n" data-count="10">0</span><span class="ev__k">FastAPI APIs</span><span class="ev__s">Production Ready</span></div>
+      <div class="ev" data-reveal><p class="ev__cat"><span aria-hidden="true">🧠</span> AI Pipeline</p><span class="ev__n" data-count="384">0</span><span class="ev__k">Embedding Dimensions</span><span class="ev__s">MiniLM</span></div>
+      <div class="ev" data-reveal><p class="ev__cat"><span aria-hidden="true">📊</span> Dataset</p><span class="ev__n" data-count="26972">0</span><span class="ev__k">Training Emails</span><span class="ev__s">Enron Corpus</span></div>
+      <div class="ev" data-reveal><p class="ev__cat"><span aria-hidden="true">🩻</span> Computer Vision</p><span class="ev__n" data-count="14">0</span><span class="ev__k">Disease Classes</span><span class="ev__s">NIH Chest X-ray</span></div>
     </div>
   </div>
 </section>
@@ -465,12 +465,18 @@ collection.upsert(ids=[chunk_id], ...)</pre>
   <div class="wrap">
     <div class="section__head">
       <p class="eyebrow">Open source</p>
-      <h2 class="h2" id="gh-h">Public repositories</h2>
-      <p class="lead">Fetched live from the public GitHub REST API — no token, no backend.</p>
+      <h2 class="h2" id="gh-h">Things I've shipped</h2>
+      <p class="lead">Eighteen public repositories. Metadata is fetched live from the public GitHub REST API; the summaries are written from each project's README.</p>
     </div>
-    <div class="repos" id="repos" aria-live="polite" aria-busy="true"><p class="small">Loading repositories…</p></div>
-    <div class="langmix" id="langmix" hidden></div>
-    <p class="small" style="margin-top:var(--s5)"><a href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">All repositories on GitHub →</a></p>
+
+    <h3 class="showcase__label" id="feat-h">Featured</h3>
+    <div class="feature" id="featured" role="list" aria-labelledby="feat-h" aria-busy="true"></div>
+
+    <h3 class="showcase__label" id="more-h">Also on GitHub</h3>
+    <div class="grid" id="more" role="list" aria-labelledby="more-h" aria-busy="true"></div>
+
+    <div class="langpanel" id="langmix" hidden></div>
+    <p class="small" style="margin-top:var(--s6)"><a href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">All 18 repositories on GitHub →</a></p>
   </div>
 </section>
 
