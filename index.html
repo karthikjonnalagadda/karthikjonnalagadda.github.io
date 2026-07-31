@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Karthik Jonnalagadda — AI/ML Engineer &amp; Data Scientist</title>
-<meta name="description" content="AI/ML Engineer building production machine learning systems: multimodal RAG pipelines, computer vision, NLP and OCR served through FastAPI. Portfolio, projects and verified engineering metrics.">
+<title>Karthik Jonnalagadda — AI/ML Engineer</title>
+<meta name="description" content="AI/ML Engineer building production machine learning systems: multimodal RAG, computer vision and OCR served through FastAPI. 50 automated tests, 10 REST endpoints, verified engineering metrics.">
 <meta name="author" content="Karthik Jonnalagadda">
-<meta name="theme-color" content="#0b1020">
+<meta name="theme-color" content="#fcfcfd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0d13" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://karthikjonnalagadda.github.io/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://karthikjonnalagadda.github.io/">
-<meta property="og:title" content="Karthik Jonnalagadda — AI/ML Engineer &amp; Data Scientist">
-<meta property="og:description" content="Production machine learning systems: multimodal RAG, computer vision, NLP and OCR served through FastAPI. 50 automated tests, 10 REST endpoints, verified metrics.">
+<meta property="og:title" content="Karthik Jonnalagadda — AI/ML Engineer">
+<meta property="og:description" content="Production machine learning systems: multimodal RAG, computer vision and OCR served through FastAPI. 50 automated tests, 10 REST endpoints, 26,972-email training corpus.">
 <meta property="og:image" content="https://karthikjonnalagadda.github.io/assets/og-cover.png">
-<meta property="og:image:alt" content="Karthik Jonnalagadda — AI/ML Engineer portfolio">
+<meta property="og:image:alt" content="Karthik Jonnalagadda — AI/ML Engineer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Karthik Jonnalagadda — AI/ML Engineer &amp; Data Scientist">
-<meta name="twitter:description" content="Production machine learning systems: multimodal RAG, computer vision, NLP and OCR served through FastAPI.">
+<meta name="twitter:title" content="Karthik Jonnalagadda — AI/ML Engineer">
+<meta name="twitter:description" content="Production machine learning systems: multimodal RAG, computer vision and OCR served through FastAPI.">
 <meta name="twitter:image" content="https://karthikjonnalagadda.github.io/assets/og-cover.png">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='system-ui'>%E2%9A%A1</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%234f46e5'/><text x='16' y='22' font-size='15' font-family='system-ui' font-weight='700' fill='white' text-anchor='middle'>KJ</text></svg>">
 <script>document.documentElement.classList.add('js');</script>
-<link rel="preload" href="assets/css/style.css" as="style">
 <link rel="stylesheet" href="assets/css/style.css">
 
 <script type="application/ld+json">
@@ -40,222 +40,343 @@
   ],
   "alumniOf": { "@type": "CollegeOrUniversity", "name": "NIIT University" },
   "knowsAbout": ["Machine Learning","Retrieval-Augmented Generation","Computer Vision",
-    "Natural Language Processing","OCR","PyTorch","FastAPI","Vector Databases"]
+    "Natural Language Processing","OCR","PyTorch","FastAPI","Vector Databases","Python"]
 }
 </script>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to main content</a>
-
-<div class="scroll-progress" role="presentation"><div class="scroll-progress__bar" id="scrollBar"></div></div>
-<canvas class="particles" id="particles" aria-hidden="true"></canvas>
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress" role="presentation"><div class="progress__bar" id="bar"></div></div>
 
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a class="nav__brand" href="#hero"><span class="nav__mark">KJ</span><span class="nav__name">Karthik Jonnalagadda</span></a>
-    <nav class="nav__links" aria-label="Primary">
-      <a href="#projects">Projects</a>
+    <a class="nav__brand" href="#top"><span class="nav__avatar" aria-hidden="true">KJ</span>Karthik Jonnalagadda</a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#work">Work</a>
       <a href="#skills">Skills</a>
-      <a href="#journey">Journey</a>
-      <a href="#opensource">Open Source</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#github">GitHub</a>
       <a href="#resume">Résumé</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="nav__actions">
-      <button class="iconbtn" id="paletteBtn" aria-label="Open command palette (Control K)" title="Command palette — Ctrl K"><span aria-hidden="true">⌘</span></button>
-      <button class="iconbtn" id="themeBtn" aria-label="Toggle colour theme" aria-pressed="false"><span aria-hidden="true" id="themeIcon">◐</span></button>
-      <button class="iconbtn nav__burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav"><span aria-hidden="true">☰</span></button>
+    <div class="nav__tools">
+      <button class="icon-btn" id="palBtn" aria-label="Search — Control K" title="Search (Ctrl K)">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.5-3.5" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn" id="themeBtn" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" id="themeIcon"><circle cx="10" cy="10" r="4"/><path d="M10 1v2M10 17v2M1 10h2M17 10h2M4 4l1.4 1.4M14.6 14.6 16 16M16 4l-1.4 1.4M5.4 14.6 4 16" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn nav__burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="drawer">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </div>
-  <nav class="nav__mobile" id="mobileNav" aria-label="Mobile" hidden>
-    <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#journey">Journey</a>
-    <a href="#opensource">Open Source</a><a href="#resume">Résumé</a><a href="#contact">Contact</a>
-  </nav>
+  <div class="wrap"><nav class="nav__drawer" id="drawer" aria-label="Mobile">
+    <a href="#work">Work</a><a href="#skills">Skills</a><a href="#timeline">Timeline</a>
+    <a href="#github">GitHub</a><a href="#resume">Résumé</a><a href="#contact">Contact</a>
+  </nav></div>
 </header>
 
 <main id="main">
+<span id="top"></span>
 
-<!-- ─────────── HERO ─────────── -->
-<section id="hero" class="hero">
-  <div class="hero__glow" aria-hidden="true"></div>
-  <div class="wrap hero__inner">
-    <p class="badge reveal"><span class="badge__dot" aria-hidden="true"></span> Available for AI/ML Engineer &amp; Data Scientist roles</p>
-    <h1 class="hero__title reveal">
-      Karthik Jonnalagadda
-    </h1>
-    <p class="hero__role reveal" aria-live="polite">
-      <span id="typed" class="typed"></span><span class="caret" aria-hidden="true"></span>
-    </p>
-    <p class="hero__sub reveal">
-      I build machine learning systems that survive contact with production — multimodal
-      <strong>RAG</strong> pipelines, <strong>computer vision</strong> inference, and <strong>OCR</strong>
-      served through FastAPI REST APIs, with swappable model backends and graceful degradation
-      when a dependency fails.
-    </p>
-    <div class="hero__cta reveal">
-      <a class="btn btn--primary magnetic" href="#projects">View Projects</a>
-      <a class="btn magnetic" href="assets/Karthik_Jonnalagadda_Resume.pdf" download>Download Résumé</a>
-      <a class="btn magnetic" href="#contact">Contact</a>
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="status" data-reveal><span class="status__led" aria-hidden="true"></span> Available for AI/ML Engineer roles</p>
+      <h1 class="display hero__title" data-reveal>Machine learning systems<br>that hold up in production.</h1>
+      <p class="hero__rotator" data-reveal aria-live="polite"><span id="rot"></span><span class="caret" aria-hidden="true"></span></p>
+      <p class="hero__pitch" data-reveal>
+        Final-year Data Science engineer. I build multimodal RAG, computer vision and OCR
+        pipelines, ship them behind FastAPI, and back them with tests — 50 passing at 60% coverage
+        on my flagship system.
+      </p>
+      <div class="hero__actions" data-reveal>
+        <a class="btn btn--primary" href="#work">View work</a>
+        <a class="btn" href="assets/Karthik_Jonnalagadda_Resume.pdf" download>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2v8m0 0 3-3M8 10 5 7M2 12v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Résumé
+        </a>
+        <a class="btn btn--ghost" href="#contact">Get in touch</a>
+      </div>
+      <div class="trusted" data-reveal>
+        <p class="trusted__label">Working with</p>
+        <div class="trusted__row">
+          <span>Python</span><span>PyTorch</span><span>FastAPI</span><span>ChromaDB</span>
+          <span>FAISS</span><span>Docker</span><span>MongoDB</span><span>React</span>
+        </div>
+      </div>
     </div>
-    <ul class="hero__links reveal">
-      <li><a href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
-      <li><a href="https://www.linkedin.com/in/jonnalagadda-karthik01/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
-      <li><a href="mailto:jonnalagadda.karthik22@st.niituniversity.in">Email ↗</a></li>
-    </ul>
-  </div>
-  <a class="scrolldown" href="#metrics" aria-label="Scroll to metrics"><span aria-hidden="true"></span></a>
-</section>
-
-<!-- ─────────── METRICS ─────────── -->
-<section id="metrics" class="section section--tight">
-  <div class="wrap">
-    <h2 class="sr-only">Engineering metrics</h2>
-    <p class="eyebrow reveal">Verified engineering metrics</p>
-    <div class="stats" id="stats">
-      <div class="stat reveal"><span class="stat__n" data-count="50">0</span><span class="stat__l">Automated tests<em>100% passing</em></span></div>
-      <div class="stat reveal"><span class="stat__n" data-count="10">0</span><span class="stat__l">REST endpoints<em>FastAPI service</em></span></div>
-      <div class="stat reveal"><span class="stat__n" data-count="60" data-suffix="%">0</span><span class="stat__l">Test coverage<em>3,477 statements</em></span></div>
-      <div class="stat reveal"><span class="stat__n" data-count="26972">0</span><span class="stat__l">Training emails<em>Enron corpus</em></span></div>
-      <div class="stat reveal"><span class="stat__n" data-count="14">0</span><span class="stat__l">Model classes<em>NIH chest X-ray</em></span></div>
-      <div class="stat reveal"><span class="stat__n" data-count="3">0</span><span class="stat__l">ML projects<em>End to end</em></span></div>
+    <div class="hero__portrait" data-reveal>
+      <div class="hero__initials" aria-hidden="true">KJ</div>
+      <p class="small" style="font-weight:560;color:var(--text)">Karthik Jonnalagadda</p>
+      <p class="tiny">B.Tech CSE (Data Science)<br>NIIT University · 2026</p>
     </div>
-    <p class="footnote reveal">Every figure is reproducible from source — test counts and coverage from <code>pytest --cov</code>, dataset size read from the trained model artifact.</p>
   </div>
 </section>
 
-<!-- ─────────── PROJECTS ─────────── -->
-<section id="projects" class="section">
+<!-- ══════════════ EVIDENCE ══════════════ -->
+<section class="section section--sunken" aria-labelledby="ev-h">
   <div class="wrap">
-    <p class="eyebrow reveal">Work</p>
-    <h2 class="h2 reveal">Projects built like products</h2>
-    <p class="lead reveal">Three systems, each taken past the notebook: APIs, tests, failure handling, and measured results.</p>
+    <div class="section__head">
+      <h2 class="h2" id="ev-h">Evidence, not adjectives</h2>
+      <p class="lead">Every number below is reproducible from source — test counts from <code>pytest --cov</code>, dataset size read directly from the trained model artifact.</p>
+    </div>
+    <div class="evidence">
+      <div class="ev" data-reveal><span class="ev__n" data-count="50">0</span><span class="ev__k">Automated tests</span><span class="ev__s">100% passing</span></div>
+      <div class="ev" data-reveal><span class="ev__n" data-count="60" data-suffix="%">0</span><span class="ev__k">Statement coverage</span><span class="ev__s">3,477 statements</span></div>
+      <div class="ev" data-reveal><span class="ev__n" data-count="10">0</span><span class="ev__k">REST endpoints</span><span class="ev__s">FastAPI service</span></div>
+      <div class="ev" data-reveal><span class="ev__n" data-count="26972">0</span><span class="ev__k">Training emails</span><span class="ev__s">Enron corpus</span></div>
+      <div class="ev" data-reveal><span class="ev__n" data-count="384">0</span><span class="ev__k">Embedding dims</span><span class="ev__s">MiniLM · PubMedBERT</span></div>
+      <div class="ev" data-reveal><span class="ev__n" data-count="14">0</span><span class="ev__k">Model classes</span><span class="ev__s">NIH chest X-ray</span></div>
+    </div>
+  </div>
+</section>
 
-    <div class="filters reveal" role="group" aria-label="Filter projects by technology">
-      <button class="chip chip--on" data-filter="all" aria-pressed="true">All</button>
-      <button class="chip" data-filter="rag" aria-pressed="false">RAG / LLM</button>
-      <button class="chip" data-filter="cv" aria-pressed="false">Computer Vision</button>
-      <button class="chip" data-filter="nlp" aria-pressed="false">NLP</button>
-      <button class="chip" data-filter="ml" aria-pressed="false">Classical ML</button>
+<!-- ══════════════ WORK ══════════════ -->
+<section class="section" id="work" aria-labelledby="work-h">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Selected work</p>
+      <h2 class="h2" id="work-h">Three systems, taken past the notebook</h2>
+      <p class="lead">Each one has an API surface, a test suite, and a documented failure mode. Expand any project for the engineering detail.</p>
     </div>
 
-    <div class="cards" id="cards">
+    <div class="filters" role="group" aria-label="Filter by discipline">
+      <button class="filter" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" data-filter="rag" aria-pressed="false">RAG / LLM</button>
+      <button class="filter" data-filter="cv" aria-pressed="false">Computer Vision</button>
+      <button class="filter" data-filter="nlp" aria-pressed="false">NLP</button>
+      <button class="filter" data-filter="ml" aria-pressed="false">Classical ML</button>
+    </div>
 
-      <article class="card card--wide reveal" data-tags="rag cv nlp">
-        <div class="card__top">
-          <div class="card__eyebrow"><span class="tag tag--hot">Flagship</span><span>2026</span></div>
-          <h3 class="card__title">Medical Multimodal AI Assistant</h3>
-          <p class="card__desc">A clinical decision-support system that reads lab reports with OCR, analyses chest X-rays with a CNN, and answers questions through a retrieval-augmented LLM — grounded in retrieved evidence rather than model memory.</p>
-          <ul class="metrics">
-            <li><b>10</b> REST endpoints</li>
-            <li><b>50/50</b> tests passing</li>
-            <li><b>60%</b> coverage</li>
-            <li><b>4</b> LLM backends</li>
-          </ul>
+    <div id="projects">
+
+      <!-- ── Project 1 ─────────────────────────────────────────── -->
+      <article class="project" data-tags="rag cv nlp" data-reveal>
+        <div class="project__head">
+          <div class="project__meta"><span class="pill">Flagship</span><span>2026</span><span>Python · FastAPI · PyTorch</span></div>
+          <h3 class="h3 project__title">Medical Multimodal AI Assistant</h3>
+          <p class="project__problem">
+            <b>Problem.</b> A clinician's evidence is split across formats — lab PDFs, chest X-rays, and
+            free-text symptoms — while a general LLM answers from memory rather than from the patient's
+            actual results. This system reads all three, retrieves matching clinical literature, and
+            returns a structured assessment with the evidence attached.
+          </p>
+          <div class="figures">
+            <div class="figure"><b>10</b><span>REST endpoints</span></div>
+            <div class="figure"><b>50/50</b><span>tests passing</span></div>
+            <div class="figure"><b>60%</b><span>coverage</span></div>
+            <div class="figure"><b>4</b><span>LLM backends</span></div>
+            <div class="figure"><b>7.49M</b><span>CNN parameters</span></div>
+          </div>
           <ul class="stack">
             <li>Python</li><li>FastAPI</li><li>PyTorch</li><li>Sentence Transformers</li><li>ChromaDB</li>
             <li>FAISS</li><li>LangChain</li><li>EasyOCR</li><li>Tesseract</li><li>MongoDB</li><li>React</li><li>Streamlit</li>
           </ul>
-          <div class="card__actions">
-            <a class="btn btn--sm btn--primary" href="https://github.com/karthikjonnalagadda/medical_multimodal_rag_ai" target="_blank" rel="noopener noreferrer">Source ↗</a>
-            <button class="btn btn--sm js-expand" aria-expanded="false" aria-controls="d1">Technical details</button>
+          <div class="project__actions">
+            <a class="btn btn--sm btn--primary" href="https://github.com/karthikjonnalagadda/medical_multimodal_rag_ai" target="_blank" rel="noopener noreferrer">Source</a>
+            <button class="btn btn--sm" data-toggle="dive1" aria-expanded="false" aria-controls="dive1">Engineering deep dive</button>
           </div>
         </div>
-        <div class="card__detail" id="d1" hidden>
-          <div class="detail__grid">
-            <div>
-              <h4>Architecture</h4>
-              <ul>
-                <li>FastAPI service exposing OCR, image analysis, multimodal diagnosis, chat and knowledge-ingestion endpoints.</li>
-                <li>Three delivery surfaces over one backend: React + TypeScript dashboard, Streamlit research UI, REST API.</li>
-                <li>Hybrid retrieval — dense Sentence-Transformer embeddings plus lexical scoring over ChromaDB/FAISS.</li>
-                <li>Lazy model initialisation keeps weight loading off the request path.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Engineering challenges</h4>
-              <ul>
-                <li><b>Schema-contract defect:</b> prompts asked for markdown while the LLM wrapper enforced JSON response mode, so parsing failed intermittently. Fixed with a strict schema plus a normalisation layer, locked by regression tests.</li>
-                <li><b>Duplicate embeddings:</b> re-ingestion wrote the same chunks repeatedly. Made chunk IDs content-hash deterministic so ingestion is idempotent.</li>
-                <li><b>Missing weights crashed startup:</b> replaced with a 3-backend vision registry that degrades gracefully instead of failing.</li>
-              </ul>
-            </div>
+
+        <div class="arch">
+          <p class="arch__title">Request path — <code>POST /analyze</code></p>
+          <svg viewBox="0 0 900 220" role="img" aria-label="Architecture: lab PDF, X-ray and symptom text enter a FastAPI service, which runs OCR, a three-backend vision registry and a hybrid retriever over ChromaDB and FAISS, then a provider-agnostic LLM layer returns a structured diagnosis persisted to MongoDB.">
+            <defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path class="head" d="M0 0 7 3.5 0 7z"/></marker></defs>
+            <rect class="box" x="4"   y="20" width="118" height="34" rx="7"/><text class="lbl" x="63" y="35" text-anchor="middle">Lab report PDF</text><text class="sub" x="63" y="47" text-anchor="middle">image / scan</text>
+            <rect class="box" x="4"   y="88" width="118" height="34" rx="7"/><text class="lbl" x="63" y="103" text-anchor="middle">Chest X-ray</text><text class="sub" x="63" y="115" text-anchor="middle">DICOM / PNG</text>
+            <rect class="box" x="4"  y="156" width="118" height="34" rx="7"/><text class="lbl" x="63" y="171" text-anchor="middle">Symptom text</text><text class="sub" x="63" y="183" text-anchor="middle">free form</text>
+
+            <rect class="box box--accent" x="168" y="72" width="120" height="66" rx="7"/><text class="lbl" x="228" y="100" text-anchor="middle">FastAPI</text><text class="sub" x="228" y="114" text-anchor="middle">lazy model init</text>
+
+            <rect class="box" x="336" y="10" width="132" height="42" rx="7"/><text class="lbl" x="402" y="28" text-anchor="middle">OCR pipeline</text><text class="sub" x="402" y="41" text-anchor="middle">EasyOCR + Tesseract</text>
+            <rect class="box" x="336" y="66" width="132" height="42" rx="7"/><text class="lbl" x="402" y="84" text-anchor="middle">Vision registry</text><text class="sub" x="402" y="97" text-anchor="middle">3 backends, fallback</text>
+            <rect class="box" x="336" y="122" width="132" height="42" rx="7"/><text class="lbl" x="402" y="140" text-anchor="middle">Hybrid retriever</text><text class="sub" x="402" y="153" text-anchor="middle">dense + lexical</text>
+            <rect class="box" x="336" y="178" width="132" height="34" rx="7"/><text class="lbl" x="402" y="199" text-anchor="middle">Explainability</text>
+
+            <rect class="box" x="512" y="122" width="118" height="42" rx="7"/><text class="lbl" x="571" y="140" text-anchor="middle">ChromaDB</text><text class="sub" x="571" y="153" text-anchor="middle">FAISS · 384-dim</text>
+
+            <rect class="box box--accent" x="672" y="66" width="128" height="52" rx="7"/><text class="lbl" x="736" y="88" text-anchor="middle">LLM layer</text><text class="sub" x="736" y="102" text-anchor="middle">Groq·OpenAI·xAI·BioGPT</text>
+            <rect class="box" x="672" y="140" width="128" height="38" rx="7"/><text class="lbl" x="736" y="157" text-anchor="middle">Structured JSON</text><text class="sub" x="736" y="169" text-anchor="middle">schema-validated</text>
+            <rect class="box" x="820" y="20" width="76" height="34" rx="7"/><text class="lbl" x="858" y="41" text-anchor="middle">MongoDB</text>
+
+            <path class="flow" marker-end="url(#a)" d="M122 37h26q10 0 10 10v25"/>
+            <path class="flow" marker-end="url(#a)" d="M122 105h42"/>
+            <path class="flow" marker-end="url(#a)" d="M122 173h26q10 0 10-10v-25"/>
+            <path class="flow" marker-end="url(#a)" d="M288 96q24 0 24-40v-15h44"/>
+            <path class="flow" marker-end="url(#a)" d="M288 105h44"/>
+            <path class="flow" marker-end="url(#a)" d="M288 114q24 0 24 20v9h44"/>
+            <path class="flow" marker-end="url(#a)" d="M402 108v66" />
+            <path class="flow" marker-end="url(#a)" d="M468 143h40"/>
+            <path class="flow" marker-end="url(#a)" d="M630 143q22 0 22-24v-24h16"/>
+            <path class="flow" marker-end="url(#a)" d="M736 118v18"/>
+            <path class="flow" marker-end="url(#a)" d="M736 66q0-30 40-30h40"/>
+          </svg>
+        </div>
+
+        <div class="deep" id="dive1" hidden>
+          <div class="deep__grid">
             <div>
               <h4>Engineering decisions</h4>
               <ul>
-                <li>Provider-agnostic LLM layer across Groq, OpenAI, xAI and local BioGPT — swap models by config, not code.</li>
-                <li>Explainability is not optional: Grad-CAM, SHAP and LIME ship with every prediction.</li>
-                <li>Dependencies split into a minimal runtime set and a development set to cut install surface.</li>
+                <li><b>Provider-agnostic LLM layer.</b> Groq, OpenAI, xAI and local BioGPT sit behind one interface, so switching models is a config change rather than a code change.</li>
+                <li><b>Vision as a registry, not a hard dependency.</b> TorchXRayVision is preferred, a CheXNet checkpoint loader is next, HuggingFace classifiers last — each degrading rather than crashing.</li>
+                <li><b>Hybrid retrieval.</b> Dense 384-dim embeddings alone missed exact lab terms, so lexical scoring runs alongside them.</li>
+                <li><b>Lazy model initialisation</b> keeps multi-hundred-megabyte weight loads off the request path.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Challenges solved</h4>
+              <ul>
+                <li><b>Schema-contract defect.</b> Prompts asked for "JSON-compatible markdown" while the wrapper enforced <code>response_format=json_object</code>. Parsing failed intermittently. Fixed by enforcing a strict six-field clinical schema plus a coercion layer, locked behind regression tests.</li>
+                <li><b>Duplicate embeddings on re-ingest.</b> Chunk IDs were non-deterministic, so re-running ingestion silently doubled the vector store. Now content-hash based, making ingestion idempotent.</li>
+                <li><b>Grad-CAM hooks and X-ray normalisation</b> were producing wrong attribution maps — both fixed and committed.</li>
+              </ul>
+              <pre class="snippet"><span class="c"># deterministic chunk IDs → idempotent re-ingestion</span>
+chunk_id = sha256(f"{source}:{ordinal}:{text}")
+collection.upsert(ids=[chunk_id], ...)</pre>
+            </div>
+            <div>
+              <h4>Testing &amp; verification</h4>
+              <ul>
+                <li><b>50 tests, 100% passing</b> across OCR, vision, RAG, chunking and API layers.</li>
+                <li><b>60% statement coverage</b> over 3,477 statements; hybrid retriever at 89%.</li>
+                <li>pre-commit, flake8 and pylint gates on every commit.</li>
+                <li>Runtime dependencies split from development set to cut install surface.</li>
+              </ul>
+              <h4 style="margin-top:1.5rem">Known gaps</h4>
+              <ul>
+                <li>Per-class ROC-AUC on a held-out NIH split is not yet recorded — the training harness exists but the run isn't published.</li>
+                <li>Two modules sit at 0% coverage and are candidates for deletion.</li>
               </ul>
             </div>
           </div>
         </div>
       </article>
 
-      <article class="card reveal" data-tags="nlp ml">
-        <div class="card__top">
-          <div class="card__eyebrow"><span class="tag">Full-stack ML</span><span>2025</span></div>
-          <h3 class="card__title">SafeInbox — Real-Time Spam Detection</h3>
-          <p class="card__desc">A live-inbox spam classifier: scikit-learn model served into a Node/Express runtime, reading real mail over the Gmail API and IMAP.</p>
-          <ul class="metrics">
-            <li><b>26,972</b> training emails</li>
-            <li><b>1.03M</b> TF-IDF features</li>
-            <li><b>2</b> ingestion paths</li>
-          </ul>
+      <!-- ── Project 2 ─────────────────────────────────────────── -->
+      <article class="project" data-tags="nlp ml" data-reveal>
+        <div class="project__head">
+          <div class="project__meta"><span class="pill">Full-stack ML</span><span>2025</span><span>Python · Node · React</span></div>
+          <h3 class="h3 project__title">SafeInbox — Real-Time Spam Detection</h3>
+          <p class="project__problem">
+            <b>Problem.</b> A spam classifier is only useful against live mail, not a static CSV.
+            SafeInbox pulls real inbox messages over the Gmail API and IMAP, classifies them with a
+            scikit-learn model, and serves results through a MERN dashboard — with the model running
+            inside a Node runtime rather than a separate service to operate.
+          </p>
+          <div class="figures">
+            <div class="figure"><b>26,972</b><span>training emails</span></div>
+            <div class="figure"><b>1.03M</b><span>TF-IDF features</span></div>
+            <div class="figure"><b>49/51</b><span>ham–spam balance</span></div>
+            <div class="figure"><b>2</b><span>ingestion paths</span></div>
+          </div>
           <ul class="stack">
-            <li>Python</li><li>Scikit-learn</li><li>TF-IDF</li><li>Node.js</li><li>Express</li><li>React</li><li>MongoDB</li><li>Docker</li><li>Jenkins</li>
+            <li>Python</li><li>Scikit-learn</li><li>TF-IDF</li><li>Node.js</li><li>Express</li>
+            <li>React</li><li>MongoDB</li><li>JWT</li><li>Docker</li><li>Jenkins</li>
           </ul>
-          <div class="card__actions">
-            <a class="btn btn--sm btn--primary" href="https://github.com/karthikjonnalagadda/SAFEINBOX" target="_blank" rel="noopener noreferrer">Source ↗</a>
-            <button class="btn btn--sm js-expand" aria-expanded="false" aria-controls="d2">Technical details</button>
+          <div class="project__actions">
+            <a class="btn btn--sm btn--primary" href="https://github.com/karthikjonnalagadda/SAFEINBOX" target="_blank" rel="noopener noreferrer">Source</a>
+            <button class="btn btn--sm" data-toggle="dive2" aria-expanded="false" aria-controls="dive2">Engineering deep dive</button>
           </div>
         </div>
-        <div class="card__detail" id="d2" hidden>
-          <div class="detail__grid">
-            <div>
-              <h4>Architecture</h4>
-              <ul>
-                <li>Multinomial Naive Bayes over a 1,034,706-feature TF-IDF space (1–3 grams, English stop words).</li>
-                <li>Node/Express backend invokes Python inference directly — no separate model-serving service to operate.</li>
-                <li>Dual ingestion: Gmail API with OAuth2, and IMAP with MIME parsing.</li>
-              </ul>
-            </div>
+
+        <div class="arch">
+          <p class="arch__title">Inference path — live mail to verdict</p>
+          <svg viewBox="0 0 900 150" role="img" aria-label="Architecture: Gmail API and IMAP feed an Express backend, which bridges to a Python scikit-learn process holding a TF-IDF vectoriser and Naive Bayes model, with results stored in MongoDB and shown in a React dashboard.">
+            <defs><marker id="b" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path class="head" d="M0 0 7 3.5 0 7z"/></marker></defs>
+            <rect class="box" x="4" y="20" width="112" height="34" rx="7"/><text class="lbl" x="60" y="35" text-anchor="middle">Gmail API</text><text class="sub" x="60" y="47" text-anchor="middle">OAuth2 read-only</text>
+            <rect class="box" x="4" y="90" width="112" height="34" rx="7"/><text class="lbl" x="60" y="105" text-anchor="middle">IMAP</text><text class="sub" x="60" y="117" text-anchor="middle">MIME parsing</text>
+
+            <rect class="box box--accent" x="164" y="52" width="122" height="44" rx="7"/><text class="lbl" x="225" y="72" text-anchor="middle">Express API</text><text class="sub" x="225" y="86" text-anchor="middle">JWT · bcrypt</text>
+
+            <rect class="box" x="336" y="52" width="132" height="44" rx="7"/><text class="lbl" x="402" y="72" text-anchor="middle">Python bridge</text><text class="sub" x="402" y="86" text-anchor="middle">python-shell</text>
+
+            <rect class="box" x="516" y="22" width="140" height="40" rx="7"/><text class="lbl" x="586" y="39" text-anchor="middle">TF-IDF vectoriser</text><text class="sub" x="586" y="52" text-anchor="middle">1,034,706 features</text>
+            <rect class="box box--accent" x="516" y="86" width="140" height="40" rx="7"/><text class="lbl" x="586" y="103" text-anchor="middle">MultinomialNB</text><text class="sub" x="586" y="116" text-anchor="middle">alpha = 0.1</text>
+
+            <rect class="box" x="704" y="22" width="106" height="36" rx="7"/><text class="lbl" x="757" y="44" text-anchor="middle">MongoDB</text>
+            <rect class="box" x="704" y="88" width="106" height="36" rx="7"/><text class="lbl" x="757" y="110" text-anchor="middle">React UI</text>
+
+            <path class="flow" marker-end="url(#b)" d="M116 37h20q12 0 12 12v14"/>
+            <path class="flow" marker-end="url(#b)" d="M116 107h20q12 0 12-12v-14"/>
+            <path class="flow" marker-end="url(#b)" d="M286 74h44"/>
+            <path class="flow" marker-end="url(#b)" d="M468 74q22 0 22-16v-16h22"/>
+            <path class="flow" marker-end="url(#b)" d="M468 74q22 0 22 16v16h22"/>
+            <path class="flow" marker-end="url(#b)" d="M656 42h44"/>
+            <path class="flow" marker-end="url(#b)" d="M656 106h44"/>
+          </svg>
+        </div>
+
+        <div class="deep" id="dive2" hidden>
+          <div class="deep__grid">
             <div>
               <h4>Engineering decisions</h4>
               <ul>
-                <li>Trained on the Enron corpus (13,263 ham / 13,709 spam) — a near-balanced split, so accuracy is a meaningful headline metric.</li>
-                <li>Model and vectoriser persisted as artifacts so inference never retrains.</li>
-                <li>JWT auth, bcrypt hashing and route guards on both API and client; Docker image with a Jenkins pipeline.</li>
+                <li><b>No separate model server.</b> Express invokes a Python process directly — one deployable instead of two, appropriate at this scale.</li>
+                <li><b>Artifacts, not retraining.</b> Vectoriser and model are persisted and loaded once, so inference never pays training cost.</li>
+                <li><b>Near-balanced corpus</b> (13,263 ham / 13,709 spam) means accuracy is a meaningful headline number rather than a misleading one.</li>
+                <li><b>1–3 gram TF-IDF</b> with English stop-word removal, yielding 1,034,706 features.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Security</h4>
+              <ul>
+                <li>JWT authentication with bcrypt password hashing.</li>
+                <li>Protected routes enforced on both API and React client.</li>
+                <li>Gmail scope limited to <code>gmail.readonly</code> — the app can never send or delete.</li>
+              </ul>
+              <h4 style="margin-top:1.5rem">Delivery</h4>
+              <ul>
+                <li>Dockerfile and Jenkins pipeline committed for reproducible builds.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Known gaps</h4>
+              <ul>
+                <li>No held-out test split is committed, so precision, recall and F1 are not published. The trained artifacts are in the repo, so this is a short exercise rather than a rebuild.</li>
+                <li>Only one classifier ships; a Naive Bayes / logistic regression / SVM comparison would justify the model choice on evidence.</li>
               </ul>
             </div>
           </div>
         </div>
       </article>
 
-      <article class="card reveal" data-tags="ml">
-        <div class="card__top">
-          <div class="card__eyebrow"><span class="tag">Unsupervised ML</span><span>2025</span></div>
-          <h3 class="card__title">Genomic Dimensionality Reduction &amp; Clustering</h3>
-          <p class="card__desc">Benchmarked two dimensionality-reduction strategies on high-dimensional genomic data and chose between them on measured cluster agreement rather than intuition.</p>
-          <ul class="metrics">
-            <li><b>0.66</b> ARI (SVD)</li>
-            <li><b>0.56</b> ARI (NMF)</li>
-          </ul>
-          <ul class="stack">
-            <li>Python</li><li>Scikit-learn</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li>
-          </ul>
-          <div class="card__actions">
-            <button class="btn btn--sm js-expand" aria-expanded="false" aria-controls="d3">Technical details</button>
+      <!-- ── Project 3 ─────────────────────────────────────────── -->
+      <article class="project" data-tags="ml" data-reveal>
+        <div class="project__head">
+          <div class="project__meta"><span class="pill">Unsupervised ML</span><span>2025</span><span>Python · Scikit-learn</span></div>
+          <h3 class="h3 project__title">Genomic Dimensionality Reduction &amp; Clustering</h3>
+          <p class="project__problem">
+            <b>Problem.</b> Genomic expression matrices have far more genes than samples, so clustering
+            them directly is unstable. The question was which projection preserves biological structure —
+            answered by measuring both rather than assuming.
+          </p>
+          <div class="figures">
+            <div class="figure"><b>0.66</b><span>ARI — SVD</span></div>
+            <div class="figure"><b>0.56</b><span>ARI — NMF</span></div>
+          </div>
+          <ul class="stack"><li>Python</li><li>Scikit-learn</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li></ul>
+          <div class="project__actions">
+            <button class="btn btn--sm" data-toggle="dive3" aria-expanded="false" aria-controls="dive3">Engineering deep dive</button>
           </div>
         </div>
-        <div class="card__detail" id="d3" hidden>
-          <div class="detail__grid">
+        <div class="deep" id="dive3" hidden>
+          <div class="deep__grid">
             <div>
               <h4>Method</h4>
               <ul>
-                <li>SVD and NMF compared ahead of K-Means; SVD selected on Adjusted Rand Index (0.66 vs 0.56).</li>
-                <li>Random Forest trained on the reduced feature space to validate separability independently of the clustering objective.</li>
-                <li>EDA — variable gene identification, correlation heatmaps, top-gene plots — to interpret clusters biologically.</li>
+                <li>SVD and NMF benchmarked ahead of K-Means; <b>SVD selected on measured cluster agreement</b> (ARI 0.66 vs 0.56).</li>
+                <li>A Random Forest trained on the reduced space validated separability <b>independently of the clustering objective</b> — guarding against clusters that are artifacts of the projection.</li>
+                <li>EDA on gene variability, correlation heatmaps and top-gene plots to interpret clusters biologically.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Known gaps</h4>
+              <ul>
+                <li>Silhouette score, explained-variance ratio and dataset dimensions are not published alongside ARI.</li>
               </ul>
             </div>
           </div>
@@ -266,172 +387,170 @@
   </div>
 </section>
 
-<!-- ─────────── SKILLS ─────────── -->
-<section id="skills" class="section section--alt">
+<!-- ══════════════ SKILLS ══════════════ -->
+<section class="section section--sunken" id="skills" aria-labelledby="sk-h">
   <div class="wrap">
-    <p class="eyebrow reveal">Expertise</p>
-    <h2 class="h2 reveal">Skills</h2>
-    <div class="skills__bar reveal">
-      <label class="sr-only" for="skillSearch">Search skills</label>
-      <input id="skillSearch" type="search" placeholder="Search a technology…" autocomplete="off">
-      <div class="filters filters--sm" role="group" aria-label="Filter skills by category">
-        <button class="chip chip--on" data-skill="all" aria-pressed="true">All</button>
-        <button class="chip" data-skill="prog" aria-pressed="false">Programming</button>
-        <button class="chip" data-skill="aiml" aria-pressed="false">AI/ML</button>
-        <button class="chip" data-skill="ds" aria-pressed="false">Data Science</button>
-        <button class="chip" data-skill="llm" aria-pressed="false">LLMs</button>
-        <button class="chip" data-skill="be" aria-pressed="false">Backend</button>
-        <button class="chip" data-skill="fe" aria-pressed="false">Frontend</button>
-        <button class="chip" data-skill="db" aria-pressed="false">Databases</button>
-        <button class="chip" data-skill="ops" aria-pressed="false">DevOps</button>
-        <button class="chip" data-skill="qa" aria-pressed="false">QA</button>
+    <div class="section__head">
+      <p class="eyebrow">Capabilities</p>
+      <h2 class="h2" id="sk-h">Skills, mapped to where they were used</h2>
+    </div>
+    <div class="skills__bar">
+      <label class="sr-only" for="skq">Search skills</label>
+      <input class="search" id="skq" type="search" placeholder="Search a technology…" autocomplete="off">
+      <div class="filters" style="margin:0" role="group" aria-label="Filter by category">
+        <button class="filter" data-cat="all" aria-pressed="true">All</button>
+        <button class="filter" data-cat="prog" aria-pressed="false">Programming</button>
+        <button class="filter" data-cat="ml" aria-pressed="false">ML</button>
+        <button class="filter" data-cat="ds" aria-pressed="false">Data Science</button>
+        <button class="filter" data-cat="llm" aria-pressed="false">LLMs</button>
+        <button class="filter" data-cat="be" aria-pressed="false">Backend</button>
+        <button class="filter" data-cat="fe" aria-pressed="false">Frontend</button>
+        <button class="filter" data-cat="db" aria-pressed="false">Databases</button>
+        <button class="filter" data-cat="ops" aria-pressed="false">DevOps</button>
+        <button class="filter" data-cat="qa" aria-pressed="false">QA</button>
       </div>
     </div>
-    <div class="skills" id="skills-grid"></div>
-    <p class="footnote reveal" id="skillEmpty" hidden>No skills match that search.</p>
+    <div class="skillgrid" id="skillgrid"></div>
+    <p class="small" id="skempty" hidden>No technology matches that search.</p>
   </div>
 </section>
 
-<!-- ─────────── JOURNEY ─────────── -->
-<section id="journey" class="section">
+<!-- ══════════════ TIMELINE ══════════════ -->
+<section class="section" id="timeline" aria-labelledby="tl-h">
   <div class="wrap">
-    <p class="eyebrow reveal">Journey</p>
-    <h2 class="h2 reveal">Experience &amp; education</h2>
+    <div class="section__head"><p class="eyebrow">Track record</p><h2 class="h2" id="tl-h">Timeline</h2></div>
     <ol class="timeline">
-      <li class="tl reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
+      <li class="tl" data-reveal>
         <p class="tl__when">Jan 2026 — Present</p>
-        <h3 class="tl__what">QA Automation Engineer Intern · NIIT Ltd</h3>
-        <p class="tl__where">Gurugram, India</p>
-        <p>Selenium WebDriver suites across high-traffic revenue workflows; backend SQL/MySQL integrity validation; REST API verification with Postman; root-cause analysis in Agile sprints.</p>
+        <div class="tl__body">
+          <p class="tl__what">QA Automation Engineer Intern · NIIT Ltd</p>
+          <p class="tl__where">Gurugram, India</p>
+          <p>Selenium WebDriver suites across high-traffic revenue workflows. Backend SQL/MySQL integrity validation, REST API verification with Postman, and root-cause analysis in Agile sprints.</p>
+        </div>
       </li>
-      <li class="tl reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
+      <li class="tl" data-reveal>
         <p class="tl__when">2026</p>
-        <h3 class="tl__what">Medical Multimodal AI Assistant</h3>
-        <p>Multimodal RAG + computer vision + OCR system. 10 REST endpoints, 50 passing tests, 60% coverage.</p>
+        <div class="tl__body">
+          <p class="tl__what">Medical Multimodal AI Assistant</p>
+          <p>Multimodal RAG, computer vision and OCR behind 10 REST endpoints. 50 passing tests at 60% coverage.</p>
+        </div>
       </li>
-      <li class="tl reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
+      <li class="tl" data-reveal>
         <p class="tl__when">2025</p>
-        <h3 class="tl__what">SafeInbox &amp; Genomic Clustering</h3>
-        <p>Real-time spam detection over 26,972 labelled emails, and an unsupervised genomic pipeline reaching ARI 0.66.</p>
+        <div class="tl__body">
+          <p class="tl__what">SafeInbox &amp; Genomic Clustering</p>
+          <p>Real-time spam detection over 26,972 labelled emails, and an unsupervised genomic pipeline reaching ARI 0.66.</p>
+        </div>
       </li>
-      <li class="tl reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
+      <li class="tl" data-reveal>
+        <p class="tl__when">2025</p>
+        <div class="tl__body">
+          <p class="tl__what">Oracle Cloud Infrastructure 2025 Certified Data Science Professional</p>
+          <p><a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=B1686B635BBC472A5AD973577A6909721C61AC111F1E25AEDE54E854793CBF64" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">Verify credential →</a></p>
+        </div>
+      </li>
+      <li class="tl" data-reveal>
         <p class="tl__when">2022 — 2026</p>
-        <h3 class="tl__what">B.Tech, Computer Science Engineering (Data Science)</h3>
-        <p class="tl__where">NIIT University, Neemrana, Rajasthan</p>
-      </li>
-      <li class="tl reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
-        <p class="tl__when">2022 · 2020</p>
-        <h3 class="tl__what">Class XII &amp; Class X</h3>
-        <p class="tl__where">Sri Gayatri Junior College, Hyderabad · New Era School, Khammam</p>
+        <div class="tl__body">
+          <p class="tl__what">B.Tech, Computer Science Engineering (Data Science)</p>
+          <p class="tl__where">NIIT University, Neemrana, Rajasthan</p>
+        </div>
       </li>
     </ol>
-
-    <h3 class="h3 reveal" id="certs">Certifications</h3>
-    <div class="certs">
-      <a class="cert reveal" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=B1686B635BBC472A5AD973577A6909721C61AC111F1E25AEDE54E854793CBF64" target="_blank" rel="noopener noreferrer">
-        <span class="cert__by">Oracle</span>
-        <span class="cert__name">OCI 2025 Certified Data Science Professional</span>
-        <span class="cert__go">View credential ↗</span>
-      </a>
-    </div>
   </div>
 </section>
 
-<!-- ─────────── OPEN SOURCE ─────────── -->
-<section id="opensource" class="section section--alt">
+<!-- ══════════════ GITHUB ══════════════ -->
+<section class="section section--sunken" id="github" aria-labelledby="gh-h">
   <div class="wrap">
-    <p class="eyebrow reveal">Open source</p>
-    <h2 class="h2 reveal">On GitHub</h2>
-    <p class="lead reveal">Pulled live from the GitHub REST API when you load the page.</p>
-    <div class="repos" id="repos" aria-live="polite" aria-busy="true">
-      <p class="footnote" id="repoStatus">Loading repositories…</p>
+    <div class="section__head">
+      <p class="eyebrow">Open source</p>
+      <h2 class="h2" id="gh-h">Public repositories</h2>
+      <p class="lead">Fetched live from the public GitHub REST API — no token, no backend.</p>
     </div>
-    <div class="langmix" id="langMix" hidden></div>
-    <p class="footnote reveal"><a href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer">See all repositories on GitHub ↗</a></p>
+    <div class="repos" id="repos" aria-live="polite" aria-busy="true"><p class="small">Loading repositories…</p></div>
+    <div class="langmix" id="langmix" hidden></div>
+    <p class="small" style="margin-top:var(--s5)"><a href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">All repositories on GitHub →</a></p>
   </div>
 </section>
 
-<!-- ─────────── RESUME ─────────── -->
-<section id="resume" class="section">
+<!-- ══════════════ RESUME ══════════════ -->
+<section class="section" id="resume" aria-labelledby="rs-h">
   <div class="wrap">
-    <p class="eyebrow reveal">Résumé</p>
-    <h2 class="h2 reveal">One page, every claim verifiable</h2>
+    <div class="section__head"><p class="eyebrow">Résumé</p><h2 class="h2" id="rs-h">One page, every claim traceable</h2></div>
     <div class="resume">
-      <div class="resume__side reveal">
-        <h3>Highlights</h3>
+      <div data-reveal>
+        <h3 class="h3" style="margin-bottom:var(--s4)">Highlights</h3>
         <ul class="ticks">
           <li>Multimodal RAG, computer vision, NLP and OCR in production shape</li>
           <li>FastAPI REST services over MongoDB and vector databases</li>
           <li>50 automated tests at 60% statement coverage</li>
-          <li>Full ML lifecycle — preprocessing to deployment</li>
+          <li>Full ML lifecycle — preprocessing through deployment</li>
           <li>Oracle Cloud Infrastructure Data Science Professional</li>
+          <li>B.Tech CSE (Data Science), NIIT University, 2026</li>
         </ul>
-        <div class="card__actions">
+        <div class="project__actions">
           <a class="btn btn--primary btn--sm" href="assets/Karthik_Jonnalagadda_Resume.pdf" download>Download PDF</a>
-          <a class="btn btn--sm" href="assets/Karthik_Jonnalagadda_Resume.pdf" target="_blank" rel="noopener noreferrer">Open in new tab ↗</a>
+          <button class="btn btn--sm" id="printBtn">Print</button>
+          <a class="btn btn--sm" href="assets/Karthik_Jonnalagadda_Resume.pdf" target="_blank" rel="noopener noreferrer">Open</a>
         </div>
       </div>
-      <div class="resume__view reveal" id="resumeView">
-        <button class="resume__load" id="resumeLoad" type="button">
-          <span class="resume__loadIcon" aria-hidden="true">📄</span>
-          <span><b>Preview the résumé</b><em>Loads a 96 KB PDF in place</em></span>
+      <div class="pdfbox" id="pdfbox" data-reveal>
+        <button class="pdfbox__cta" id="pdfLoad" type="button">
+          <b>Preview the résumé</b>
+          <span class="tiny">Loads a 96 KB PDF in place</span>
         </button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─────────── CONTACT ─────────── -->
-<section id="contact" class="section section--alt">
+<!-- ══════════════ CONTACT ══════════════ -->
+<section class="section section--sunken" id="contact" aria-labelledby="ct-h">
   <div class="wrap">
-    <p class="eyebrow reveal">Contact</p>
-    <h2 class="h2 reveal">Let's talk</h2>
-    <p class="lead reveal">Open to AI/ML Engineer and Data Scientist roles. The fastest way to reach me is email.</p>
+    <div class="section__head">
+      <p class="eyebrow">Contact</p>
+      <h2 class="h2" id="ct-h">Open to AI/ML Engineer and Data Scientist roles</h2>
+      <p class="lead">Email is fastest. Happy to walk through any of the architectures above.</p>
+    </div>
     <div class="contact">
-      <div class="contact__row reveal">
-        <span class="contact__k">Email</span>
-        <a class="contact__v" href="mailto:jonnalagadda.karthik22@st.niituniversity.in">jonnalagadda.karthik22@st.niituniversity.in</a>
-        <button class="btn btn--sm" id="copyEmail" data-copy="jonnalagadda.karthik22@st.niituniversity.in">Copy</button>
+      <div class="crow" data-reveal>
+        <span class="crow__k">Email</span>
+        <a class="crow__v" href="mailto:jonnalagadda.karthik22@st.niituniversity.in">jonnalagadda.karthik22@st.niituniversity.in</a>
+        <button class="btn btn--sm" data-copy="jonnalagadda.karthik22@st.niituniversity.in">Copy</button>
       </div>
-      <div class="contact__row reveal">
-        <span class="contact__k">Phone</span>
-        <a class="contact__v" href="tel:+919392991430">+91 93929 91430</a>
+      <div class="crow" data-reveal>
+        <span class="crow__k">Phone</span>
+        <a class="crow__v" href="tel:+919392991430">+91 93929 91430</a>
         <button class="btn btn--sm" data-copy="+919392991430">Copy</button>
       </div>
-      <div class="contact__row reveal">
-        <span class="contact__k">LinkedIn</span>
-        <a class="contact__v" href="https://www.linkedin.com/in/jonnalagadda-karthik01/" target="_blank" rel="noopener noreferrer">/in/jonnalagadda-karthik01 ↗</a>
+      <div class="crow" data-reveal>
+        <span class="crow__k">LinkedIn</span>
+        <a class="crow__v" href="https://www.linkedin.com/in/jonnalagadda-karthik01/" target="_blank" rel="noopener noreferrer">/in/jonnalagadda-karthik01 →</a>
       </div>
-      <div class="contact__row reveal">
-        <span class="contact__k">GitHub</span>
-        <a class="contact__v" href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer">github.com/karthikjonnalagadda ↗</a>
+      <div class="crow" data-reveal>
+        <span class="crow__k">GitHub</span>
+        <a class="crow__v" href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer">github.com/karthikjonnalagadda →</a>
       </div>
     </div>
   </div>
 </section>
-
 </main>
 
 <footer class="foot">
   <div class="wrap foot__inner">
-    <p>© <span id="year">2026</span> Karthik Jonnalagadda</p>
-    <p class="foot__note">Hand-written HTML, CSS and JavaScript — no framework, no build step.</p>
+    <p class="tiny">© <span id="yr">2026</span> Karthik Jonnalagadda</p>
+    <p class="tiny">Hand-written HTML, CSS and JavaScript. No framework, no build step.</p>
   </div>
 </footer>
 
-<div class="palette" id="palette" hidden role="dialog" aria-modal="true" aria-label="Command palette">
+<div class="palette" id="palette" hidden role="dialog" aria-modal="true" aria-label="Search">
   <div class="palette__box">
-    <label class="sr-only" for="paletteInput">Search commands</label>
-    <input id="paletteInput" type="text" placeholder="Jump to… (Esc to close)" autocomplete="off">
-    <ul id="paletteList" role="listbox" aria-label="Commands"></ul>
+    <label class="sr-only" for="palq">Search</label>
+    <input id="palq" type="text" placeholder="Search projects, skills, sections…" autocomplete="off">
+    <ul id="pallist" role="listbox" aria-label="Results"></ul>
   </div>
 </div>
-
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <script src="assets/js/main.js" defer></script>
