@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://karthikjonnalagadda.github.io/sitemap.xml

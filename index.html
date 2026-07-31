@@ -1,969 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Karthik Jonnalagadda · Portfolio</title>
-  <meta name="description" content="Portfolio of Karthik Jonnalagadda – Data Science & AI Engineer" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karthik Jonnalagadda — AI/ML Engineer &amp; Data Scientist</title>
+<meta name="description" content="AI/ML Engineer building production machine learning systems: multimodal RAG pipelines, computer vision, NLP and OCR served through FastAPI. Portfolio, projects and verified engineering metrics.">
+<meta name="author" content="Karthik Jonnalagadda">
+<meta name="theme-color" content="#0b1020">
+<link rel="canonical" href="https://karthikjonnalagadda.github.io/">
 
-  <style>
-    :root {
-      --ink:     #0d0f14;
-      --ink-2:   #2e3340;
-      --ink-3:   #5c6070;
-      --paper:   #fafaf8;
-      --paper-2: #f2f1ed;
-      --paper-3: #e8e6df;
-      --gold:    #b8975a;
-      --gold-lt: #d4b47a;
-      --teal:    #2b6cb0;
-      --teal-lt: #4299e1;
-      --line:    rgba(0,0,0,0.08);
-      --shadow:  0 2px 24px rgba(0,0,0,0.07);
-    }
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://karthikjonnalagadda.github.io/">
+<meta property="og:title" content="Karthik Jonnalagadda — AI/ML Engineer &amp; Data Scientist">
+<meta property="og:description" content="Production machine learning systems: multimodal RAG, computer vision, NLP and OCR served through FastAPI. 50 automated tests, 10 REST endpoints, verified metrics.">
+<meta property="og:image" content="https://karthikjonnalagadda.github.io/assets/og-cover.png">
+<meta property="og:image:alt" content="Karthik Jonnalagadda — AI/ML Engineer portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Karthik Jonnalagadda — AI/ML Engineer &amp; Data Scientist">
+<meta name="twitter:description" content="Production machine learning systems: multimodal RAG, computer vision, NLP and OCR served through FastAPI.">
+<meta name="twitter:image" content="https://karthikjonnalagadda.github.io/assets/og-cover.png">
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='system-ui'>%E2%9A%A1</text></svg>">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preload" href="assets/css/style.css" as="style">
+<link rel="stylesheet" href="assets/css/style.css">
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    a { color: var(--teal); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* ── Noise texture overlay ───────────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 999;
-      opacity: .025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    /* ── Sidebar nav ─────────────────────────────────────────────── */
-    .sidebar {
-      position: fixed;
-      left: 0; top: 0; bottom: 0;
-      width: 220px;
-      background: var(--ink);
-      display: flex;
-      flex-direction: column;
-      padding: 40px 0 32px;
-      z-index: 100;
-    }
-
-    .sidebar-brand {
-      padding: 0 28px 36px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .sidebar-brand .monogram {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'DM Serif Display', serif;
-      font-size: 20px; color: var(--ink);
-      margin-bottom: 14px;
-      box-shadow: 0 4px 12px rgba(184,151,90,0.35);
-    }
-    .sidebar-brand h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 15px;
-      font-weight: 400;
-      color: #fff;
-      line-height: 1.3;
-    }
-    .sidebar-brand p {
-      font-size: 11px;
-      color: rgba(255,255,255,0.45);
-      margin-top: 4px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .sidebar-nav {
-      padding: 28px 0;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .sidebar-nav a {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 28px;
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.02em;
-      transition: color 0.2s, background 0.2s;
-      border-left: 3px solid transparent;
-      text-decoration: none;
-    }
-    .sidebar-nav a:hover,
-    .sidebar-nav a.active {
-      color: #fff;
-      background: rgba(255,255,255,0.05);
-      border-left-color: var(--gold);
-    }
-    .sidebar-nav a .icon { font-size: 15px; opacity: .7; }
-
-    .sidebar-footer {
-      padding: 0 20px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 20px;
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .sidebar-footer a.btn-cv {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 10px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
-      color: var(--ink);
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      transition: opacity 0.2s;
-    }
-    .sidebar-footer a.btn-cv:hover { opacity: .85; }
-
-    /* ── Main content ─────────────────────────────────────────────── */
-    .main {
-      margin-left: 220px;
-      min-height: 100vh;
-    }
-
-    section {
-      padding: 80px 64px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    /* ── Section headings ────────────────────────────────────────── */
-    .section-label {
-      display: inline-block;
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
-    section > h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(26px, 3vw, 36px);
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1.2;
-      margin-bottom: 40px;
-    }
-
-    /* ── Hero ────────────────────────────────────────────────────── */
-    #hero {
-      background: var(--ink);
-      border-bottom: none;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(184,151,90,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    #hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px; left: 10%;
-      width: 400px; height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(66,153,225,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-inner { position: relative; z-index: 1; max-width: 720px; }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid rgba(184,151,90,0.4);
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 12px;
-      color: var(--gold-lt);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-    .hero-tag span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); display: inline-block; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
-
-    .hero-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 400;
-      color: #fff;
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
-    .hero-name em {
-      font-style: italic;
-      color: var(--gold-lt);
-    }
-
-    .hero-sub {
-      font-size: 16px;
-      color: rgba(255,255,255,0.55);
-      max-width: 54ch;
-      line-height: 1.75;
-      margin-bottom: 36px;
-      font-weight: 300;
-    }
-
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 22px;
-      border-radius: 10px;
-      font-size: 13.5px;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-    .hero-btn.primary {
-      background: var(--gold);
-      color: var(--ink);
-    }
-    .hero-btn.primary:hover { background: var(--gold-lt); text-decoration: none; }
-    .hero-btn.ghost {
-      border: 1px solid rgba(255,255,255,0.18);
-      color: rgba(255,255,255,0.7);
-    }
-    .hero-btn.ghost:hover { border-color: rgba(255,255,255,0.4); color: #fff; text-decoration: none; }
-
-    .hero-stats {
-      display: flex; gap: 40px;
-      margin-top: 56px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .hero-stat .num {
-      display: block;
-      font-family: 'DM Serif Display', serif;
-      font-size: 32px;
-      color: #fff;
-      line-height: 1;
-    }
-    .hero-stat .lbl {
-      font-size: 11px;
-      color: rgba(255,255,255,0.4);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 4px;
-      display: block;
-    }
-
-    /* ── Projects ─────────────────────────────────────────────────── */
-    #projects { background: var(--paper); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 24px;
-    }
-
-    .project-card {
-      background: #fff;
-      border: 1px solid var(--paper-3);
-      border-radius: 16px;
-      padding: 28px 30px 30px;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-lt));
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .project-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.09); }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-card .proj-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      margin-bottom: 18px;
-      background: var(--paper-2);
-    }
-
-    .project-card h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--ink);
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-    .project-card p {
-      font-size: 13.5px;
-      color: var(--ink-3);
-      line-height: 1.7;
-      flex: 1;
-      margin-bottom: 20px;
-    }
-
-    .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .proj-tag {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--ink-2);
-      background: var(--paper-2);
-      border: 1px solid var(--paper-3);
-      border-radius: 6px;
-      padding: 3px 8px;
-      letter-spacing: 0.02em;
-    }
-
-    .project-card .proj-meta {
-      font-size: 11.5px;
-      color: var(--ink-3);
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--paper-3);
-      display: flex; justify-content: space-between;
-    }
-
-    /* ── Featured project (spans 2 cols) ─────────────────────────── */
-    .project-card.featured {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: start;
-    }
-    .project-card.featured .proj-content { display: flex; flex-direction: column; height: 100%; }
-    .project-card.featured .proj-details { border-left: 1px solid var(--paper-3); padding-left: 32px; }
-    .project-card.featured .proj-highlight {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-
-    .feat-list {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .feat-list li {
-      font-size: 13px;
-      color: var(--ink-3);
-      padding-left: 16px;
-      position: relative;
-      line-height: 1.6;
-    }
-    .feat-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-size: 11px;
-      top: 2px;
-    }
-
-    /* ── Skills ───────────────────────────────────────────────────── */
-    #skills { background: var(--paper-2); }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .skill-group {
-      background: #fff;
-      border: 1px solid var(--paper-3);
-      border-radius: 14px;
-      padding: 22px 24px;
-    }
-    .skill-group h3 {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
-    }
-    .chips { display: flex; gap: 7px; flex-wrap: wrap; }
-    .chip {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ink-2);
-      background: var(--paper-2);
-      border: 1px solid var(--paper-3);
-      border-radius: 7px;
-      padding: 4px 10px;
-    }
-
-    /* ── Education ────────────────────────────────────────────────── */
-    #education { background: var(--paper); }
-
-    .edu-timeline { display: flex; flex-direction: column; gap: 0; }
-    .edu-item {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 24px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .edu-item:last-child { border-bottom: none; }
-    .edu-year {
-      font-family: 'DM Serif Display', serif;
-      font-size: 20px;
-      color: var(--ink-3);
-      padding-top: 2px;
-    }
-    .edu-right h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 19px;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-    .edu-right p { font-size: 13.5px; color: var(--ink-3); }
-
-    /* ── Certifications ────────────────────────────────────────────── */
-    #certifications { background: var(--paper-2); }
-
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 18px;
-    }
-    .cert-card {
-      background: #fff;
-      border: 1px solid var(--paper-3);
-      border-radius: 14px;
-      padding: 22px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
-    .cert-card .cert-issuer {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .cert-card h3 {
-      font-size: 14.5px;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.4;
-    }
-    .cert-card a {
-      font-size: 12px;
-      color: var(--teal);
-      display: inline-flex; align-items: center; gap: 4px;
-      margin-top: 4px;
-    }
-
-    /* ── Contact ───────────────────────────────────────────────────── */
-    #contact { background: var(--ink); border-bottom: none; }
-    #contact .section-label { color: var(--gold); }
-    #contact h2 { color: #fff; }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-    .contact-left p {
-      color: rgba(255,255,255,0.5);
-      font-size: 15px;
-      line-height: 1.75;
-      font-weight: 300;
-    }
-    .contact-links { display: flex; flex-direction: column; gap: 14px; }
-    .contact-link {
-      display: flex; align-items: center; gap: 14px;
-      padding: 16px 20px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .contact-link:hover { background: rgba(255,255,255,0.09); border-color: rgba(184,151,90,0.4); text-decoration: none; }
-    .contact-link .cl-icon {
-      width: 38px; height: 38px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.07);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-    .contact-link .cl-text { display: flex; flex-direction: column; }
-    .contact-link .cl-label { font-size: 10.5px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; }
-    .contact-link .cl-value { font-size: 13.5px; color: rgba(255,255,255,0.85); font-weight: 500; margin-top: 1px; }
-
-    /* ── Footer ───────────────────────────────────────────────────── */
-    footer {
-      margin-left: 220px;
-      padding: 20px 64px;
-      background: var(--ink);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      text-align: center;
-      font-size: 12px;
-      color: rgba(255,255,255,0.25);
-    }
-
-    /* ── Fade-in animation ────────────────────────────────────────── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ── Responsive ───────────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      .sidebar { display: none; }
-      .main, footer { margin-left: 0; }
-      section { padding: 56px 24px; }
-      .project-card.featured { grid-template-columns: 1fr; }
-      .project-card.featured .proj-details { border-left: none; padding-left: 0; border-top: 1px solid var(--paper-3); padding-top: 24px; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 24px; }
-      footer { padding: 20px 24px; }
-    }
-    @media (max-width: 560px) {
-      .skills-grid { grid-template-columns: 1fr; }
-      .edu-item { grid-template-columns: 1fr; gap: 6px; }
-    }
-  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Karthik Jonnalagadda",
+  "url": "https://karthikjonnalagadda.github.io/",
+  "jobTitle": "AI/ML Engineer",
+  "email": "mailto:jonnalagadda.karthik22@st.niituniversity.in",
+  "telephone": "+91-9392991430",
+  "sameAs": [
+    "https://github.com/karthikjonnalagadda",
+    "https://www.linkedin.com/in/jonnalagadda-karthik01/"
+  ],
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "NIIT University" },
+  "knowsAbout": ["Machine Learning","Retrieval-Augmented Generation","Computer Vision",
+    "Natural Language Processing","OCR","PyTorch","FastAPI","Vector Databases"]
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- ── Sidebar ──────────────────────────────────────────────────── -->
-  <aside class="sidebar" role="navigation">
-    <div class="sidebar-brand">
-      <div class="monogram">KJ</div>
-      <h1>Karthik<br>Jonnalagadda</h1>
-      <p>Data Science · AI</p>
-    </div>
-    <nav class="sidebar-nav" aria-label="Primary">
-      <a href="#hero"           class="active"><span class="icon">⌂</span> Home</a>
-      <a href="#projects"              ><span class="icon">◈</span> Projects</a>
-      <a href="#skills"                ><span class="icon">◎</span> Skills</a>
-      <a href="#education"             ><span class="icon">✦</span> Education</a>
-      <a href="#certifications"        ><span class="icon">◉</span> Certifications</a>
-      <a href="#contact"               ><span class="icon">◐</span> Contact</a>
+<div class="scroll-progress" role="presentation"><div class="scroll-progress__bar" id="scrollBar"></div></div>
+<canvas class="particles" id="particles" aria-hidden="true"></canvas>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#hero"><span class="nav__mark">KJ</span><span class="nav__name">Karthik Jonnalagadda</span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#journey">Journey</a>
+      <a href="#opensource">Open Source</a>
+      <a href="#resume">Résumé</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <div class="sidebar-footer">
-      <a class="btn-cv" href="assets/Karthik_Jonnalagadda_CV.pdf" target="_blank">↓ Download CV</a>
+    <div class="nav__actions">
+      <button class="iconbtn" id="paletteBtn" aria-label="Open command palette (Control K)" title="Command palette — Ctrl K"><span aria-hidden="true">⌘</span></button>
+      <button class="iconbtn" id="themeBtn" aria-label="Toggle colour theme" aria-pressed="false"><span aria-hidden="true" id="themeIcon">◐</span></button>
+      <button class="iconbtn nav__burger" id="burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav"><span aria-hidden="true">☰</span></button>
     </div>
-  </aside>
+  </div>
+  <nav class="nav__mobile" id="mobileNav" aria-label="Mobile" hidden>
+    <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#journey">Journey</a>
+    <a href="#opensource">Open Source</a><a href="#resume">Résumé</a><a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <!-- ── Main ─────────────────────────────────────────────────────── -->
-  <div class="main">
+<main id="main">
 
-    <!-- Hero -->
-    <section id="hero">
-      <div class="hero-inner">
-        <div class="hero-tag">
-          <span></span> Available for Internships &amp; Full-time Roles
+<!-- ─────────── HERO ─────────── -->
+<section id="hero" class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <p class="badge reveal"><span class="badge__dot" aria-hidden="true"></span> Available for AI/ML Engineer &amp; Data Scientist roles</p>
+    <h1 class="hero__title reveal">
+      Karthik Jonnalagadda
+    </h1>
+    <p class="hero__role reveal" aria-live="polite">
+      <span id="typed" class="typed"></span><span class="caret" aria-hidden="true"></span>
+    </p>
+    <p class="hero__sub reveal">
+      I build machine learning systems that survive contact with production — multimodal
+      <strong>RAG</strong> pipelines, <strong>computer vision</strong> inference, and <strong>OCR</strong>
+      served through FastAPI REST APIs, with swappable model backends and graceful degradation
+      when a dependency fails.
+    </p>
+    <div class="hero__cta reveal">
+      <a class="btn btn--primary magnetic" href="#projects">View Projects</a>
+      <a class="btn magnetic" href="assets/Karthik_Jonnalagadda_Resume.pdf" download>Download Résumé</a>
+      <a class="btn magnetic" href="#contact">Contact</a>
+    </div>
+    <ul class="hero__links reveal">
+      <li><a href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+      <li><a href="https://www.linkedin.com/in/jonnalagadda-karthik01/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+      <li><a href="mailto:jonnalagadda.karthik22@st.niituniversity.in">Email ↗</a></li>
+    </ul>
+  </div>
+  <a class="scrolldown" href="#metrics" aria-label="Scroll to metrics"><span aria-hidden="true"></span></a>
+</section>
+
+<!-- ─────────── METRICS ─────────── -->
+<section id="metrics" class="section section--tight">
+  <div class="wrap">
+    <h2 class="sr-only">Engineering metrics</h2>
+    <p class="eyebrow reveal">Verified engineering metrics</p>
+    <div class="stats" id="stats">
+      <div class="stat reveal"><span class="stat__n" data-count="50">0</span><span class="stat__l">Automated tests<em>100% passing</em></span></div>
+      <div class="stat reveal"><span class="stat__n" data-count="10">0</span><span class="stat__l">REST endpoints<em>FastAPI service</em></span></div>
+      <div class="stat reveal"><span class="stat__n" data-count="60" data-suffix="%">0</span><span class="stat__l">Test coverage<em>3,477 statements</em></span></div>
+      <div class="stat reveal"><span class="stat__n" data-count="26972">0</span><span class="stat__l">Training emails<em>Enron corpus</em></span></div>
+      <div class="stat reveal"><span class="stat__n" data-count="14">0</span><span class="stat__l">Model classes<em>NIH chest X-ray</em></span></div>
+      <div class="stat reveal"><span class="stat__n" data-count="3">0</span><span class="stat__l">ML projects<em>End to end</em></span></div>
+    </div>
+    <p class="footnote reveal">Every figure is reproducible from source — test counts and coverage from <code>pytest --cov</code>, dataset size read from the trained model artifact.</p>
+  </div>
+</section>
+
+<!-- ─────────── PROJECTS ─────────── -->
+<section id="projects" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">Work</p>
+    <h2 class="h2 reveal">Projects built like products</h2>
+    <p class="lead reveal">Three systems, each taken past the notebook: APIs, tests, failure handling, and measured results.</p>
+
+    <div class="filters reveal" role="group" aria-label="Filter projects by technology">
+      <button class="chip chip--on" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" data-filter="rag" aria-pressed="false">RAG / LLM</button>
+      <button class="chip" data-filter="cv" aria-pressed="false">Computer Vision</button>
+      <button class="chip" data-filter="nlp" aria-pressed="false">NLP</button>
+      <button class="chip" data-filter="ml" aria-pressed="false">Classical ML</button>
+    </div>
+
+    <div class="cards" id="cards">
+
+      <article class="card card--wide reveal" data-tags="rag cv nlp">
+        <div class="card__top">
+          <div class="card__eyebrow"><span class="tag tag--hot">Flagship</span><span>2026</span></div>
+          <h3 class="card__title">Medical Multimodal AI Assistant</h3>
+          <p class="card__desc">A clinical decision-support system that reads lab reports with OCR, analyses chest X-rays with a CNN, and answers questions through a retrieval-augmented LLM — grounded in retrieved evidence rather than model memory.</p>
+          <ul class="metrics">
+            <li><b>10</b> REST endpoints</li>
+            <li><b>50/50</b> tests passing</li>
+            <li><b>60%</b> coverage</li>
+            <li><b>4</b> LLM backends</li>
+          </ul>
+          <ul class="stack">
+            <li>Python</li><li>FastAPI</li><li>PyTorch</li><li>Sentence Transformers</li><li>ChromaDB</li>
+            <li>FAISS</li><li>LangChain</li><li>EasyOCR</li><li>Tesseract</li><li>MongoDB</li><li>React</li><li>Streamlit</li>
+          </ul>
+          <div class="card__actions">
+            <a class="btn btn--sm btn--primary" href="https://github.com/karthikjonnalagadda/medical_multimodal_rag_ai" target="_blank" rel="noopener noreferrer">Source ↗</a>
+            <button class="btn btn--sm js-expand" aria-expanded="false" aria-controls="d1">Technical details</button>
+          </div>
         </div>
-        <h2 class="hero-name">
-          Data Science<br>&amp; <em>AI Engineer</em>
-        </h2>
-        <p class="hero-sub">
-          Final-year B.Tech student at NIIT University specialising in Data Science. Building production-grade AI systems — from multimodal RAG pipelines to real-time ML applications.
-        </p>
-        <div class="hero-actions">
-          <a class="hero-btn primary" href="#projects">View Projects</a>
-          <a class="hero-btn ghost" href="#contact">Get in Touch</a>
-          <a class="hero-btn ghost" href="https://www.linkedin.com/in/jonnalagadda-karthik01/" target="_blank">LinkedIn ↗</a>
-          <a class="hero-btn ghost" href="https://github.com/KarthikJonnalagadda" target="_blank">GitHub ↗</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="num">5+</span>
-            <span class="lbl">Projects</span>
-          </div>
-          <div class="hero-stat">
-            <span class="num">RAG</span>
-            <span class="lbl">LLM Systems</span>
-          </div>
-          <div class="hero-stat">
-            <span class="num">2026</span>
-            <span class="lbl">Graduating</span>
-          </div>
-          <div class="hero-stat">
-            <span class="num">AWS</span>
-            <span class="lbl">Cloud Deploy</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects">
-      <div class="fade-up">
-        <span class="section-label">Work</span>
-        <h2>Featured Projects</h2>
-      </div>
-      <div class="projects-grid">
-
-        <!-- Featured: Multi-Modal Medical AI -->
-        <article class="project-card featured fade-up">
-          <div class="proj-content">
-            <div class="proj-icon">🏥</div>
-            <div class="proj-highlight">Featured Project</div>
-            <h3>Multi-Modal Medical AI Assistant</h3>
-            <p>Production-grade multimodal healthcare AI combining OCR, computer vision, and RAG to analyse lab reports, X-ray/MRI images, and patient symptoms — delivering hallucination-free diagnostic insights backed by PubMed, WHO, and ICD-10 evidence.</p>
-            <div class="proj-tags">
-              <span class="proj-tag">Python</span>
-              <span class="proj-tag">PyTorch</span>
-              <span class="proj-tag">LangChain</span>
-              <span class="proj-tag">DenseNet121</span>
-              <span class="proj-tag">RAG</span>
-              <span class="proj-tag">ChromaDB</span>
-              <span class="proj-tag">BioGPT</span>
-              <span class="proj-tag">FastAPI</span>
-              <span class="proj-tag">Streamlit</span>
-              <span class="proj-tag">Docker</span>
+        <div class="card__detail" id="d1" hidden>
+          <div class="detail__grid">
+            <div>
+              <h4>Architecture</h4>
+              <ul>
+                <li>FastAPI service exposing OCR, image analysis, multimodal diagnosis, chat and knowledge-ingestion endpoints.</li>
+                <li>Three delivery surfaces over one backend: React + TypeScript dashboard, Streamlit research UI, REST API.</li>
+                <li>Hybrid retrieval — dense Sentence-Transformer embeddings plus lexical scoring over ChromaDB/FAISS.</li>
+                <li>Lazy model initialisation keeps weight loading off the request path.</li>
+              </ul>
             </div>
-            <div class="proj-meta">
-              <span>Aug 2025 – Dec 2025</span>
-              <span>Team of 4</span>
+            <div>
+              <h4>Engineering challenges</h4>
+              <ul>
+                <li><b>Schema-contract defect:</b> prompts asked for markdown while the LLM wrapper enforced JSON response mode, so parsing failed intermittently. Fixed with a strict schema plus a normalisation layer, locked by regression tests.</li>
+                <li><b>Duplicate embeddings:</b> re-ingestion wrote the same chunks repeatedly. Made chunk IDs content-hash deterministic so ingestion is idempotent.</li>
+                <li><b>Missing weights crashed startup:</b> replaced with a 3-backend vision registry that degrades gracefully instead of failing.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Engineering decisions</h4>
+              <ul>
+                <li>Provider-agnostic LLM layer across Groq, OpenAI, xAI and local BioGPT — swap models by config, not code.</li>
+                <li>Explainability is not optional: Grad-CAM, SHAP and LIME ship with every prediction.</li>
+                <li>Dependencies split into a minimal runtime set and a development set to cut install surface.</li>
+              </ul>
             </div>
           </div>
-          <div class="proj-details">
-            <p style="font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:.08em; font-weight:600; margin-bottom:14px;">Key Highlights</p>
-            <ul class="feat-list">
-              <li>OCR pipeline (EasyOCR + Tesseract) extracting structured lab metrics with automated reference-range flagging</li>
-              <li>DenseNet121 vision model fine-tuned on NIH Chest X-ray dataset — 14-class radiological findings with per-class confidence</li>
-              <li>RAG pipeline grounding LLM responses in verified PubMed / WHO / ICD-10 knowledge via ChromaDB &amp; FAISS</li>
-              <li>SHAP, LIME, and Grad-CAM explainability for transparent, evidence-based confidence scores</li>
-              <li>Full test suite: OCR accuracy, vision AUC, RAG MRR@K, and API endpoint coverage</li>
-              <li>Streamlit dashboard + FastAPI backend; Docker + docker-compose multi-service deployment</li>
-            </ul>
-          </div>
-        </article>
+        </div>
+      </article>
 
-        <!-- SafeInbox -->
-        <article class="project-card fade-up">
-          <div class="proj-icon">📧</div>
-          <h3>SafeInbox: Real-Time Spam Detection</h3>
-          <p>ML pipeline achieving ~94% accuracy using Naïve Bayes, Logistic Regression, and SVM. MERN dashboard with IMAP Gmail integration and Docker deployment.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">Scikit-learn</span>
-            <span class="proj-tag">React.js</span>
-            <span class="proj-tag">MongoDB</span>
-            <span class="proj-tag">Docker</span>
-          </div>
-          <div class="proj-meta">
-            <span>Feb – May 2025</span><span>Team of 4</span>
-          </div>
-        </article>
-
-        <!-- Rural Healthcare -->
-        <article class="project-card fade-up">
-          <div class="proj-icon">🌾</div>
-          <h3>Empowering Rural Healthcare with AI</h3>
-          <p>AI-driven diagnostic framework with 25% improvement in early disease detection and 50% fewer unnecessary hospital visits. Covered telemedicine, maternal monitoring, and patient triaging.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">AI/ML</span>
-            <span class="proj-tag">Telemedicine</span>
-            <span class="proj-tag">Research</span>
-          </div>
-          <div class="proj-meta">
-            <span>Jan – Apr 2025</span><span>Team of 4</span>
-          </div>
-        </article>
-
-        <!-- Genomic -->
-        <article class="project-card fade-up">
-          <div class="proj-icon">🧬</div>
-          <h3>Genomic Dimensionality Reduction &amp; Clustering</h3>
-          <p>Applied SVD and NMF on high-dimensional genomic data. K-Means clustering with ARI 0.66 (SVD). Validated biological separation via Random Forest classification.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">Scikit-learn</span>
-            <span class="proj-tag">SVD</span>
-            <span class="proj-tag">NMF</span>
-            <span class="proj-tag">K-Means</span>
-          </div>
-          <div class="proj-meta">
-            <span>Feb – Apr 2025</span><span>Team of 2</span>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills">
-      <div class="fade-up">
-        <span class="section-label">Expertise</span>
-        <h2>Skills &amp; Technologies</h2>
-      </div>
-      <div class="skills-grid fade-up">
-        <div class="skill-group">
-          <h3>Languages</h3>
-          <div class="chips">
-            <span class="chip">Python</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">Java</span>
-            <span class="chip">R</span>
+      <article class="card reveal" data-tags="nlp ml">
+        <div class="card__top">
+          <div class="card__eyebrow"><span class="tag">Full-stack ML</span><span>2025</span></div>
+          <h3 class="card__title">SafeInbox — Real-Time Spam Detection</h3>
+          <p class="card__desc">A live-inbox spam classifier: scikit-learn model served into a Node/Express runtime, reading real mail over the Gmail API and IMAP.</p>
+          <ul class="metrics">
+            <li><b>26,972</b> training emails</li>
+            <li><b>1.03M</b> TF-IDF features</li>
+            <li><b>2</b> ingestion paths</li>
+          </ul>
+          <ul class="stack">
+            <li>Python</li><li>Scikit-learn</li><li>TF-IDF</li><li>Node.js</li><li>Express</li><li>React</li><li>MongoDB</li><li>Docker</li><li>Jenkins</li>
+          </ul>
+          <div class="card__actions">
+            <a class="btn btn--sm btn--primary" href="https://github.com/karthikjonnalagadda/SAFEINBOX" target="_blank" rel="noopener noreferrer">Source ↗</a>
+            <button class="btn btn--sm js-expand" aria-expanded="false" aria-controls="d2">Technical details</button>
           </div>
         </div>
-        <div class="skill-group">
-          <h3>Frontend</h3>
-          <div class="chips">
-            <span class="chip">React</span>
-            <span class="chip">Next.js</span>
-            <span class="chip">HTML</span>
-            <span class="chip">CSS</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Backend</h3>
-          <div class="chips">
-            <span class="chip">FastAPI</span>
-            <span class="chip">Node.js</span>
-            <span class="chip">Django</span>
-            <span class="chip">REST APIs</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>AI &amp; GenAI</h3>
-          <div class="chips">
-            <span class="chip">LangChain</span>
-            <span class="chip">RAG</span>
-            <span class="chip">BioGPT</span>
-            <span class="chip">SHAP</span>
-            <span class="chip">Grad-CAM</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Machine Learning</h3>
-          <div class="chips">
-            <span class="chip">PyTorch</span>
-            <span class="chip">TensorFlow</span>
-            <span class="chip">Scikit-learn</span>
-            <span class="chip">Transformers</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Vector DBs</h3>
-          <div class="chips">
-            <span class="chip">ChromaDB</span>
-            <span class="chip">FAISS</span>
-            <span class="chip">Pinecone</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Databases</h3>
-          <div class="chips">
-            <span class="chip">MySQL</span>
-            <span class="chip">MongoDB</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Cloud &amp; DevOps</h3>
-          <div class="chips">
-            <span class="chip">AWS EC2/ECR</span>
-            <span class="chip">Docker</span>
-            <span class="chip">Google Cloud</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Tools</h3>
-          <div class="chips">
-            <span class="chip">Git</span>
-            <span class="chip">GitHub</span>
-            <span class="chip">Streamlit</span>
-            <span class="chip">Flask</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education">
-      <div class="fade-up">
-        <span class="section-label">Academic</span>
-        <h2>Education</h2>
-      </div>
-      <div class="edu-timeline fade-up">
-        <div class="edu-item">
-          <div class="edu-year">2022–<br>2026</div>
-          <div class="edu-right">
-            <h3>B.Tech — CSE (Data Science)</h3>
-            <p>NIIT University, Neemrana, Rajasthan</p>
-          </div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-year">2022</div>
-          <div class="edu-right">
-            <h3>Class XII</h3>
-            <p>Sri Gayatri Junior College, Hyderabad, Telangana · State Board</p>
-          </div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-year">2020</div>
-          <div class="edu-right">
-            <h3>Class X</h3>
-            <p>New Era School, Khammam, Telangana · State Board</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications -->
-    <section id="certifications">
-      <div class="fade-up">
-        <span class="section-label">Credentials</span>
-        <h2>Certifications</h2>
-      </div>
-      <div class="cert-grid fade-up">
-        <div class="cert-card">
-          <span class="cert-issuer">Oracle</span>
-          <h3>OCI 2025 Certified Data Science Professional</h3>
-          <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=B1686B635BBC472A5AD973577A6909721C61AC111F1E25AEDE54E854793CBF64" target="_blank">View Credential ↗</a>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">LinkedIn Learning</span>
-          <h3>Introduction to Career Skills in Data Analytics</h3>
-          <a href="https://lnkd.in/eBxSXHN7" target="_blank">View Credential ↗</a>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">LinkedIn Learning</span>
-          <h3>Data Analytics Foundation Course</h3>
-          <a href="https://lnkd.in/eBxSXHN7" target="_blank">View Credential ↗</a>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">LinkedIn Learning</span>
-          <h3>Data Science Career Essentials</h3>
-          <a href="https://lnkd.in/eBxSXHN7" target="_blank">View Credential ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <div class="fade-up">
-        <span class="section-label">Let's Connect</span>
-        <h2>Get in Touch</h2>
-      </div>
-      <div class="contact-grid fade-up">
-        <div class="contact-left">
-          <p>I'm actively looking for internships and full-time roles in Data Science, ML Engineering, and AI development. Whether you have a role in mind or just want to talk shop — my inbox is always open.</p>
-        </div>
-        <div class="contact-links">
-          <a class="contact-link" href="mailto:jonnalagadda.karthik22@st.niituniversity.in">
-            <div class="cl-icon">✉</div>
-            <div class="cl-text">
-              <span class="cl-label">Email</span>
-              <span class="cl-value">jonnalagadda.karthik22@st.niituniversity.in</span>
+        <div class="card__detail" id="d2" hidden>
+          <div class="detail__grid">
+            <div>
+              <h4>Architecture</h4>
+              <ul>
+                <li>Multinomial Naive Bayes over a 1,034,706-feature TF-IDF space (1–3 grams, English stop words).</li>
+                <li>Node/Express backend invokes Python inference directly — no separate model-serving service to operate.</li>
+                <li>Dual ingestion: Gmail API with OAuth2, and IMAP with MIME parsing.</li>
+              </ul>
             </div>
-          </a>
-          <a class="contact-link" href="https://www.linkedin.com/in/jonnalagadda-karthik01/" target="_blank">
-            <div class="cl-icon">in</div>
-            <div class="cl-text">
-              <span class="cl-label">LinkedIn</span>
-              <span class="cl-value">/in/jonnalagadda-karthik01</span>
+            <div>
+              <h4>Engineering decisions</h4>
+              <ul>
+                <li>Trained on the Enron corpus (13,263 ham / 13,709 spam) — a near-balanced split, so accuracy is a meaningful headline metric.</li>
+                <li>Model and vectoriser persisted as artifacts so inference never retrains.</li>
+                <li>JWT auth, bcrypt hashing and route guards on both API and client; Docker image with a Jenkins pipeline.</li>
+              </ul>
             </div>
-          </a>
-          <a class="contact-link" href="https://github.com/KarthikJonnalagadda" target="_blank">
-            <div class="cl-icon">⌥</div>
-            <div class="cl-text">
-              <span class="cl-label">GitHub</span>
-              <span class="cl-value">github.com/KarthikJonnalagadda</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-tags="ml">
+        <div class="card__top">
+          <div class="card__eyebrow"><span class="tag">Unsupervised ML</span><span>2025</span></div>
+          <h3 class="card__title">Genomic Dimensionality Reduction &amp; Clustering</h3>
+          <p class="card__desc">Benchmarked two dimensionality-reduction strategies on high-dimensional genomic data and chose between them on measured cluster agreement rather than intuition.</p>
+          <ul class="metrics">
+            <li><b>0.66</b> ARI (SVD)</li>
+            <li><b>0.56</b> ARI (NMF)</li>
+          </ul>
+          <ul class="stack">
+            <li>Python</li><li>Scikit-learn</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li>
+          </ul>
+          <div class="card__actions">
+            <button class="btn btn--sm js-expand" aria-expanded="false" aria-controls="d3">Technical details</button>
+          </div>
+        </div>
+        <div class="card__detail" id="d3" hidden>
+          <div class="detail__grid">
+            <div>
+              <h4>Method</h4>
+              <ul>
+                <li>SVD and NMF compared ahead of K-Means; SVD selected on Adjusted Rand Index (0.66 vs 0.56).</li>
+                <li>Random Forest trained on the reduced feature space to validate separability independently of the clustering objective.</li>
+                <li>EDA — variable gene identification, correlation heatmaps, top-gene plots — to interpret clusters biologically.</li>
+              </ul>
             </div>
-          </a>
-          <a class="contact-link" href="tel:+919392991430">
-            <div class="cl-icon">☏</div>
-            <div class="cl-text">
-              <span class="cl-label">Phone</span>
-              <span class="cl-value">+91 93929 91430</span>
-            </div>
-          </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── SKILLS ─────────── -->
+<section id="skills" class="section section--alt">
+  <div class="wrap">
+    <p class="eyebrow reveal">Expertise</p>
+    <h2 class="h2 reveal">Skills</h2>
+    <div class="skills__bar reveal">
+      <label class="sr-only" for="skillSearch">Search skills</label>
+      <input id="skillSearch" type="search" placeholder="Search a technology…" autocomplete="off">
+      <div class="filters filters--sm" role="group" aria-label="Filter skills by category">
+        <button class="chip chip--on" data-skill="all" aria-pressed="true">All</button>
+        <button class="chip" data-skill="prog" aria-pressed="false">Programming</button>
+        <button class="chip" data-skill="aiml" aria-pressed="false">AI/ML</button>
+        <button class="chip" data-skill="ds" aria-pressed="false">Data Science</button>
+        <button class="chip" data-skill="llm" aria-pressed="false">LLMs</button>
+        <button class="chip" data-skill="be" aria-pressed="false">Backend</button>
+        <button class="chip" data-skill="fe" aria-pressed="false">Frontend</button>
+        <button class="chip" data-skill="db" aria-pressed="false">Databases</button>
+        <button class="chip" data-skill="ops" aria-pressed="false">DevOps</button>
+        <button class="chip" data-skill="qa" aria-pressed="false">QA</button>
+      </div>
+    </div>
+    <div class="skills" id="skills-grid"></div>
+    <p class="footnote reveal" id="skillEmpty" hidden>No skills match that search.</p>
+  </div>
+</section>
+
+<!-- ─────────── JOURNEY ─────────── -->
+<section id="journey" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">Journey</p>
+    <h2 class="h2 reveal">Experience &amp; education</h2>
+    <ol class="timeline">
+      <li class="tl reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <p class="tl__when">Jan 2026 — Present</p>
+        <h3 class="tl__what">QA Automation Engineer Intern · NIIT Ltd</h3>
+        <p class="tl__where">Gurugram, India</p>
+        <p>Selenium WebDriver suites across high-traffic revenue workflows; backend SQL/MySQL integrity validation; REST API verification with Postman; root-cause analysis in Agile sprints.</p>
+      </li>
+      <li class="tl reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <p class="tl__when">2026</p>
+        <h3 class="tl__what">Medical Multimodal AI Assistant</h3>
+        <p>Multimodal RAG + computer vision + OCR system. 10 REST endpoints, 50 passing tests, 60% coverage.</p>
+      </li>
+      <li class="tl reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <p class="tl__when">2025</p>
+        <h3 class="tl__what">SafeInbox &amp; Genomic Clustering</h3>
+        <p>Real-time spam detection over 26,972 labelled emails, and an unsupervised genomic pipeline reaching ARI 0.66.</p>
+      </li>
+      <li class="tl reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <p class="tl__when">2022 — 2026</p>
+        <h3 class="tl__what">B.Tech, Computer Science Engineering (Data Science)</h3>
+        <p class="tl__where">NIIT University, Neemrana, Rajasthan</p>
+      </li>
+      <li class="tl reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <p class="tl__when">2022 · 2020</p>
+        <h3 class="tl__what">Class XII &amp; Class X</h3>
+        <p class="tl__where">Sri Gayatri Junior College, Hyderabad · New Era School, Khammam</p>
+      </li>
+    </ol>
+
+    <h3 class="h3 reveal" id="certs">Certifications</h3>
+    <div class="certs">
+      <a class="cert reveal" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=B1686B635BBC472A5AD973577A6909721C61AC111F1E25AEDE54E854793CBF64" target="_blank" rel="noopener noreferrer">
+        <span class="cert__by">Oracle</span>
+        <span class="cert__name">OCI 2025 Certified Data Science Professional</span>
+        <span class="cert__go">View credential ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── OPEN SOURCE ─────────── -->
+<section id="opensource" class="section section--alt">
+  <div class="wrap">
+    <p class="eyebrow reveal">Open source</p>
+    <h2 class="h2 reveal">On GitHub</h2>
+    <p class="lead reveal">Pulled live from the GitHub REST API when you load the page.</p>
+    <div class="repos" id="repos" aria-live="polite" aria-busy="true">
+      <p class="footnote" id="repoStatus">Loading repositories…</p>
+    </div>
+    <div class="langmix" id="langMix" hidden></div>
+    <p class="footnote reveal"><a href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer">See all repositories on GitHub ↗</a></p>
+  </div>
+</section>
+
+<!-- ─────────── RESUME ─────────── -->
+<section id="resume" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">Résumé</p>
+    <h2 class="h2 reveal">One page, every claim verifiable</h2>
+    <div class="resume">
+      <div class="resume__side reveal">
+        <h3>Highlights</h3>
+        <ul class="ticks">
+          <li>Multimodal RAG, computer vision, NLP and OCR in production shape</li>
+          <li>FastAPI REST services over MongoDB and vector databases</li>
+          <li>50 automated tests at 60% statement coverage</li>
+          <li>Full ML lifecycle — preprocessing to deployment</li>
+          <li>Oracle Cloud Infrastructure Data Science Professional</li>
+        </ul>
+        <div class="card__actions">
+          <a class="btn btn--primary btn--sm" href="assets/Karthik_Jonnalagadda_Resume.pdf" download>Download PDF</a>
+          <a class="btn btn--sm" href="assets/Karthik_Jonnalagadda_Resume.pdf" target="_blank" rel="noopener noreferrer">Open in new tab ↗</a>
         </div>
       </div>
-    </section>
+      <div class="resume__view reveal" id="resumeView">
+        <button class="resume__load" id="resumeLoad" type="button">
+          <span class="resume__loadIcon" aria-hidden="true">📄</span>
+          <span><b>Preview the résumé</b><em>Loads a 96 KB PDF in place</em></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
-  </div><!-- /.main -->
+<!-- ─────────── CONTACT ─────────── -->
+<section id="contact" class="section section--alt">
+  <div class="wrap">
+    <p class="eyebrow reveal">Contact</p>
+    <h2 class="h2 reveal">Let's talk</h2>
+    <p class="lead reveal">Open to AI/ML Engineer and Data Scientist roles. The fastest way to reach me is email.</p>
+    <div class="contact">
+      <div class="contact__row reveal">
+        <span class="contact__k">Email</span>
+        <a class="contact__v" href="mailto:jonnalagadda.karthik22@st.niituniversity.in">jonnalagadda.karthik22@st.niituniversity.in</a>
+        <button class="btn btn--sm" id="copyEmail" data-copy="jonnalagadda.karthik22@st.niituniversity.in">Copy</button>
+      </div>
+      <div class="contact__row reveal">
+        <span class="contact__k">Phone</span>
+        <a class="contact__v" href="tel:+919392991430">+91 93929 91430</a>
+        <button class="btn btn--sm" data-copy="+919392991430">Copy</button>
+      </div>
+      <div class="contact__row reveal">
+        <span class="contact__k">LinkedIn</span>
+        <a class="contact__v" href="https://www.linkedin.com/in/jonnalagadda-karthik01/" target="_blank" rel="noopener noreferrer">/in/jonnalagadda-karthik01 ↗</a>
+      </div>
+      <div class="contact__row reveal">
+        <span class="contact__k">GitHub</span>
+        <a class="contact__v" href="https://github.com/karthikjonnalagadda" target="_blank" rel="noopener noreferrer">github.com/karthikjonnalagadda ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer>© 2025 Karthik Jonnalagadda · Built with HTML &amp; CSS</footer>
+</main>
 
-  <script>
-    // ── Scroll-spy for sidebar active state ───────────────────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.sidebar-nav a');
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p>© <span id="year">2026</span> Karthik Jonnalagadda</p>
+    <p class="foot__note">Hand-written HTML, CSS and JavaScript — no framework, no build step.</p>
+  </div>
+</footer>
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(a => a.classList.remove('active'));
-          const link = document.querySelector(`.sidebar-nav a[href="#${entry.target.id}"]`);
-          if (link) link.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-30% 0px -60% 0px' });
+<div class="palette" id="palette" hidden role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="palette__box">
+    <label class="sr-only" for="paletteInput">Search commands</label>
+    <input id="paletteInput" type="text" placeholder="Jump to… (Esc to close)" autocomplete="off">
+    <ul id="paletteList" role="listbox" aria-label="Commands"></ul>
+  </div>
+</div>
 
-    sections.forEach(s => observer.observe(s));
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-    // ── Fade-up on scroll ─────────────────────────────────────────────────────
-    const fadeEls = document.querySelectorAll('.fade-up');
-    const fadeObs = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = `${(i % 4) * 80}ms`;
-          entry.target.classList.add('visible');
-          fadeObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    fadeEls.forEach(el => fadeObs.observe(el));
-  </script>
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>
